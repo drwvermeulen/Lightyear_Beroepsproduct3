@@ -1,17 +1,19 @@
 package com.example.lightyear_beroepsproduct3;
 
-public class Velg {
-    private String vlg;
+public enum Velg {
+    Velgen16("16 Velgen", 0),
+    Velgen17("17 Velgen", 1),
+    Velgen18("18 Velgen", 2);
 
-    public Velg(String velg) {
-        this.vlg = velg;
+    private String stringValue;
+    private int intValue;
+    private Velg(String toString, int value) {
+        stringValue = toString;
+        intValue = value;
     }
 
-    public String getVlg() {
-        return vlg;
-    }
-
-    public void setVlg(String vlg) {
-        this.vlg = vlg;
+    @Override
+    public String toString() {
+        return stringValue;
     }
 }

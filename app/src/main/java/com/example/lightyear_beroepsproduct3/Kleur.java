@@ -1,17 +1,20 @@
 package com.example.lightyear_beroepsproduct3;
 
-public class Kleur {
-    private String klr;
+public enum Kleur {
+    Zwart("Zwart", 0),
+    Wit("Wit", 1),
+    Rood("Rood", 2),
+    Blauw("Blauw", 3);
 
-    public Kleur(String kleur) {
-        this.klr = kleur;
+    private String stringValue;
+    private int intValue;
+    private Kleur(String toString, int value) {
+        stringValue = toString;
+        intValue = value;
     }
 
-    public String getKlr() {
-        return klr;
-    }
-
-    public void setKlr(String klr) {
-        this.klr = klr;
+    @Override
+    public String toString() {
+        return stringValue;
     }
 }

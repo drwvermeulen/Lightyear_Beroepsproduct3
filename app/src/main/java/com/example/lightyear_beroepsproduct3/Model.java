@@ -1,17 +1,18 @@
 package com.example.lightyear_beroepsproduct3;
 
-public class Model {
-    private String mdl;
+public enum Model {
+    LightyearOne("Lightyear One", 0),
+    LightyearOnePioneer("Lightyear One - Pioneer Edition", 1);
 
-    public Model(String model) {
-        this.mdl = model;
+    private String stringValue;
+    private int intValue;
+    private Model(String toString, int value) {
+        stringValue = toString;
+        intValue = value;
     }
 
-    public String getMdl() {
-        return mdl;
-    }
-
-    public void setMdl(String mdl) {
-        this.mdl = mdl;
+    @Override
+    public String toString() {
+        return stringValue;
     }
 }
