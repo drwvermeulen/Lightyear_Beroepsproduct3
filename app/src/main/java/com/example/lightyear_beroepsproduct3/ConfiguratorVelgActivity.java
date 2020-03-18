@@ -55,12 +55,16 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
                         return true;
                     case R.id.configuratorVelg:
                         return true;
+                    case R.id.configuratorBestellen:
+                        startActivity(new Intent(getApplicationContext(), ConfiguratorBestellenActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
                 }
                 return false;
             }
         });
 
-        rgKeuzeVelg = findViewById(R.id.rgKeuzeKleur);
+        rgKeuzeVelg = findViewById(R.id.rgKeuzeVelg);
         rb16Velg = findViewById(R.id.rb16Velg);
         rb16Velg.setText(Velg.Velgen16.toString());
         rb17Velg = findViewById(R.id.rb17Velg);
@@ -68,7 +72,7 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
         rb18Velg = findViewById(R.id.rb18Velg);
         rb18Velg.setText(Velg.Velgen18.toString());
 
-        btnVolgende = findViewById(R.id.btnConfigureren);
+        btnVolgende = findViewById(R.id.btnVolgende);
         btnVolgende.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

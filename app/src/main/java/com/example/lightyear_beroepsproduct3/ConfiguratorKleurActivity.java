@@ -51,6 +51,10 @@ public class ConfiguratorKleurActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), ConfiguratorVelgActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
+                    case R.id.configuratorBestellen:
+                        startActivity(new Intent(getApplicationContext(), ConfiguratorBestellenActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
                 }
                 return false;
             }
@@ -66,7 +70,7 @@ public class ConfiguratorKleurActivity extends AppCompatActivity {
         rbKleurBlauw = findViewById(R.id.rbKleurBlauw);
         rbKleurBlauw.setText(Kleur.KleurBlauw.toString());
 
-        btnVolgende = findViewById(R.id.btnConfigureren);
+        btnVolgende = findViewById(R.id.btnVolgende);
         btnVolgende.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

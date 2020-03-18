@@ -53,12 +53,16 @@ public class ConfiguratorLakActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), ConfiguratorVelgActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
+                    case R.id.configuratorBestellen:
+                        startActivity(new Intent(getApplicationContext(), ConfiguratorBestellenActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
                 }
                 return false;
             }
         });
 
-        rgKeuzeLak = findViewById(R.id.rgKeuzeKleur);
+        rgKeuzeLak = findViewById(R.id.rgKeuzeLak);
         rbUnilak = findViewById(R.id.rbUnilak);
         rbUnilak.setText(Lak.Unilak.toString());
         rbMetalliclak = findViewById(R.id.rbMetalliclak);
@@ -66,7 +70,7 @@ public class ConfiguratorLakActivity extends AppCompatActivity {
         rbMattelak = findViewById(R.id.rbMattelak);
         rbMattelak.setText(Lak.Mattelak.toString());
 
-        btnVolgende = findViewById(R.id.btnConfigureren);
+        btnVolgende = findViewById(R.id.btnVolgende);
         btnVolgende.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

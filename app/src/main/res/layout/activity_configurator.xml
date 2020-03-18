@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/lightyearone" />
 
     <TextView
-        android:id="@+id/tvSelecteerModel"
+        android:id="@+id/tvConfiguratorModel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="210dp"
