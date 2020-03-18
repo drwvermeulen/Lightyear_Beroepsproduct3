@@ -12,8 +12,8 @@ import android.widget.TextView;
 public class LoginActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
     EditText etLoginEmailadres, etLoginWachtwoord;
-    Button btnLogin;
-    TextView tvRegistreren;
+    private Button btnLogin;
+    private TextView tvRegistreren;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
