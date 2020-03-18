@@ -17,7 +17,7 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         //Initialiseert en wijst variabele toe
-        BottomNavigationView bnvBottomNavigation; bnvBottomNavigation = findViewById(R.id.bnvBottomNavigation);
+        BottomNavigationView bnvBottomNavigation = findViewById(R.id.bnvBottomNavigation);
 
         //Zet home op geselecteerd
         bnvBottomNavigation.setSelectedItemId(R.id.profile);

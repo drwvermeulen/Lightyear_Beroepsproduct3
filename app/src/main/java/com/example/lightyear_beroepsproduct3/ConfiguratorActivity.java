@@ -6,18 +6,55 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ConfiguratorActivity extends AppCompatActivity {
+    private RadioGroup rgKeuzeModel;
+    private RadioButton rbLightyearOne, rbLightyearOnePioneer;
+    private Button btnConfigureren;
+    private Model geselecteerdeModel;
+    public static final String CONFIGURERENMODEL = "Model";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configurator);
 
+        rgKeuzeModel = findViewById(R.id.rgKeuzeModel);
+        rbLightyearOne = findViewById(R.id.rbLightyearOne);
+        rbLightyearOne.setText(Model.LightyearOne.toString());
+        rbLightyearOnePioneer = findViewById(R.id.rbLightyearOnePioneer);
+        rbLightyearOnePioneer.setText(Model.LightyearOnePioneer.toString());
+
+        btnConfigureren = findViewById(R.id.btnConfigureren);
+        btnConfigureren.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int checkedID = rgKeuzeModel.getCheckedRadioButtonId();
+                if(checkedID == -1) {
+                    //No radio buttons are checked
+                    Message.message(getApplicationContext(), "Selecteer iets!");
+                }
+                else {
+                    //One of the radio buttons are selected
+                    findRadioButton(checkedID);
+                    GeconfigureerdeLightyear lightyear = GeconfigureerdeLightyear.construct(geselecteerdeModel);
+//                    int prijs = berekenPrijs();
+//                    lightyear.berekenSubtotaal(prijs);
+                    Intent i = new Intent (v.getContext(), ConfiguratorKleurActivity.class);
+                    i.putExtra(CONFIGURERENMODEL, lightyear);
+                    startActivity(i);
+                }
+            }
+        });
+
         //Initialiseert en wijst variabele toe
-        BottomNavigationView bnvBottomNavigation; bnvBottomNavigation = findViewById(R.id.bnvBottomNavigation);
+        BottomNavigationView bnvBottomNavigation = findViewById(R.id.bnvBottomNavigation);
 
         //Zet home op geselecteerd
         bnvBottomNavigation.setSelectedItemId(R.id.configurator);
@@ -41,5 +78,17 @@ public class ConfiguratorActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    //Deze methode kijkt welke radiobutton is geselecteerd en geeft de juiste waarde mee
+    private void findRadioButton(int checkedID) {
+        switch (checkedID) {
+            case R.id.rbLightyearOne:
+                geselecteerdeModel = Model.LightyearOne;
+                break;
+            case R.id.rbLightyearOnePioneer:
+                geselecteerdeModel = Model.LightyearOnePioneer;
+                break;
+        }
     }
 }

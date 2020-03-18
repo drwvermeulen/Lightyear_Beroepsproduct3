@@ -1,10 +1,10 @@
 package com.example.lightyear_beroepsproduct3;
 
 public enum Kleur {
-    Zwart("Zwart", 0),
-    Wit("Wit", 1),
-    Rood("Rood", 2),
-    Blauw("Blauw", 3);
+    KleurZwart("Zwart", 0),
+    KleurWit("Wit", 1),
+    KleurRood("Rood", 2),
+    KleurBlauw("Blauw", 3);
 
     private String stringValue;
     private int intValue;

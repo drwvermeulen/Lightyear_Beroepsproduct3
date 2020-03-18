@@ -21,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //Terugknop
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnRegistreren = findViewById(R.id.btnRegistreren);
@@ -100,6 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    //Deze methode zorgt ervoor dat als je op de terugknop klikt, je naar de juiste activity gaat
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -107,7 +109,6 @@ public class RegisterActivity extends AppCompatActivity {
                 finish();
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

@@ -5,65 +5,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConfiguratorActivity">
+    tools:context=".ConfiguratorLakActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnvTopNavigation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="-75dp"
-        app:srcCompat="@drawable/lightyearone" />
+        app:itemBackground="@color/colorPrimary"
+        app:itemTextColor="@drawable/selectortp"
+        app:itemIconTint="@drawable/selectortp"
+        app:menu="@menu/menu_navigation_top" />
 
     <TextView
-        android:id="@+id/tvSelecteerModel"
+        android:id="@+id/tvConfigLak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="210dp"
         android:layout_marginLeft="48dp"
-        android:text="Selecteer uw auto:"
+        android:text="Lak"
         android:textSize="20dp"
         android:textColor="#000000" />
 
     <RadioGroup
-        android:id="@+id/rgKeuzeModel"
+        android:id="@+id/rgKeuzeLak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp" >
 
         <RadioButton
-            android:id="@+id/rbLightyearOne"
+            android:id="@+id/rbUnilak"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Model \nPrijs" />
+            android:text="Lak \nPrijs" />
 
         <RadioButton
-            android:id="@+id/rbLightyearOnePioneer"
+            android:id="@+id/rbMetalliclak"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Model \nPrijs" />
+            android:text="Lak \nPrijs" />
+
+        <RadioButton
+            android:id="@+id/rbMattelak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lak \nPrijs" />
+
     </RadioGroup>
 
     <Button
-        android:id="@+id/btnConfigureren"
+        android:id="@+id/btnVolgende"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Configureren"
+        android:text="@string/btnVolgende"
         android:width="175dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="75dp" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnvBottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemBackground="@color/colorPrimary"
-        app:itemTextColor="@drawable/selectorbttm"
-        app:itemIconTint="@drawable/selectorbttm"
-        app:menu="@menu/menu_navigation_bottom" />
 
 </RelativeLayout>

@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Initialiseert en wijst variabele toe
-        BottomNavigationView bnvBottomNavigation; bnvBottomNavigation = findViewById(R.id.bnvBottomNavigation);
+        BottomNavigationView bnvBottomNavigation = findViewById(R.id.bnvBottomNavigation);
 
         //Zet home op geselecteerd
         bnvBottomNavigation.setSelectedItemId(R.id.home);
