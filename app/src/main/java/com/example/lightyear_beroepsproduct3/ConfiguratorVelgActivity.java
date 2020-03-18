@@ -93,7 +93,7 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
                     geselecteerdeKleur = i.getParcelableExtra(ConfiguratorKleurActivity.CONFIGURERENKLEUR);
                     geselecteerdeLak = i.getParcelableExtra(ConfiguratorLakActivity.CONFIGURERENLAK);
 
-                    i = new Intent(v.getContext(), ConfiguratorBestellenActivity.class);
+                    i = new Intent(ConfiguratorVelgActivity.this, ConfiguratorBestellenActivity.class);
                     i.putExtra(CONFIGURERENMODEL, geselecteerdeModel);
                     i.putExtra(CONFIGURERENKLEUR, geselecteerdeKleur);
                     i.putExtra(CONFIGURERENLAK, geselecteerdeLak);

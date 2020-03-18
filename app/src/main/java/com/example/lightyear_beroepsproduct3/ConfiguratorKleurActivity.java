@@ -89,7 +89,7 @@ public class ConfiguratorKleurActivity extends AppCompatActivity {
                     Intent i = getIntent();
                     geselecteerdeModel = i.getParcelableExtra(ConfiguratorLakActivity.CONFIGURERENMODEL);
 
-                    i = new Intent(v.getContext(), ConfiguratorLakActivity.class);
+                    i = new Intent(ConfiguratorKleurActivity.this, ConfiguratorLakActivity.class);
                     i.putExtra(CONFIGURERENMODEL, geselecteerdeModel);
                     i.putExtra(CONFIGURERENKLEUR, geselecteerdeKleur);
                     startActivity(i);

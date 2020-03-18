@@ -17,13 +17,24 @@
         app:itemIconTint="@drawable/selectortp"
         app:menu="@menu/menu_navigation_top" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="-25dp"
+        app:srcCompat="@drawable/lightyearone" />
+
     <TextView
         android:id="@+id/tvConfiguratorLak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="210dp"
-        android:layout_marginLeft="48dp"
-        android:text="Lak"
+        android:layout_marginTop="260dp"
+        android:layout_centerHorizontal="true"
+        android:text="Selecteer uw lak:"
         android:textSize="20dp"
         android:textColor="#000000" />
 
@@ -31,8 +42,8 @@
         android:id="@+id/rgKeuzeLak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp" >
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="300dp" >
 
         <RadioButton
             android:id="@+id/rbUnilak"
@@ -62,6 +73,6 @@
         android:width="175dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="75dp" />
+        android:layout_marginBottom="25dp" />
 
 </RelativeLayout>

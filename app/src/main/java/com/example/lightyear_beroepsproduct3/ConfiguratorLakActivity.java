@@ -90,7 +90,7 @@ public class ConfiguratorLakActivity extends AppCompatActivity {
                     geselecteerdeModel = i.getParcelableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
                     geselecteerdeKleur = i.getParcelableExtra(ConfiguratorKleurActivity.CONFIGURERENKLEUR);
 
-                    i = new Intent(v.getContext(), ConfiguratorVelgActivity.class);
+                    i = new Intent(ConfiguratorLakActivity.this, ConfiguratorVelgActivity.class);
                     i.putExtra(CONFIGURERENMODEL, geselecteerdeModel);
                     i.putExtra(CONFIGURERENKLEUR, geselecteerdeKleur);
                     i.putExtra(CONFIGURERENLAK, geselecteerdeLak);
