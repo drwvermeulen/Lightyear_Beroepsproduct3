@@ -17,15 +17,8 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
     private RadioGroup rgKeuzeVelg;
     private RadioButton rb16Velg, rb17Velg, rb18Velg;
     private Button btnVolgende;
-    private Model geselecteerdeModel;
-    private Kleur geselecteerdeKleur;
-    private Lak geselecteerdeLak;
     private Velg geselecteerdeVelg;
     public static final String CONFIGURERENMODEL = "Model";
-    public static final String CONFIGURERENKLEUR = "Kleur";
-    public static final String CONFIGURERENLAK = "Lak";
-    public static final String CONFIGURERENVELG = "Velg";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,15 +82,11 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
 //                    lightyear.berekenSubtotaal(prijs);
 
                     Intent i = getIntent();
-                    geselecteerdeModel = i.getParcelableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
-                    geselecteerdeKleur = i.getParcelableExtra(ConfiguratorKleurActivity.CONFIGURERENKLEUR);
-                    geselecteerdeLak = i.getParcelableExtra(ConfiguratorLakActivity.CONFIGURERENLAK);
+                    GeconfigureerdeLightyear lightyear = i.getParcelableExtra(ConfiguratorLakActivity.CONFIGURERENMODEL);
+                    lightyear.setVlg(geselecteerdeVelg);
 
-                    i = new Intent(ConfiguratorVelgActivity.this, ConfiguratorBestellenActivity.class);
-                    i.putExtra(CONFIGURERENMODEL, geselecteerdeModel);
-                    i.putExtra(CONFIGURERENKLEUR, geselecteerdeKleur);
-                    i.putExtra(CONFIGURERENLAK, geselecteerdeLak);
-                    i.putExtra(CONFIGURERENVELG, geselecteerdeVelg);
+                    i = new Intent(v.getContext(), ConfiguratorBestellenActivity.class);
+                    i.putExtra(CONFIGURERENMODEL, lightyear);
                     startActivity(i);
                 }
             }

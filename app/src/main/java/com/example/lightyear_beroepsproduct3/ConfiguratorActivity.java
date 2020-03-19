@@ -46,7 +46,7 @@ public class ConfiguratorActivity extends AppCompatActivity {
                     GeconfigureerdeLightyear lightyear = GeconfigureerdeLightyear.construct(geselecteerdeModel);
 //                    int prijs = berekenPrijs();
 //                    lightyear.berekenSubtotaal(prijs);
-                    Intent i = new Intent (ConfiguratorActivity.this, ConfiguratorKleurActivity.class);
+                    Intent i = new Intent (v.getContext(), ConfiguratorKleurActivity.class);
                     i.putExtra(CONFIGURERENMODEL, lightyear);
                     startActivity(i);
                 }

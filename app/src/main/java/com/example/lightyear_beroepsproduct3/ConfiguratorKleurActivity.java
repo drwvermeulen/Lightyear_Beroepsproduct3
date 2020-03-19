@@ -17,10 +17,8 @@ public class ConfiguratorKleurActivity extends AppCompatActivity {
     private RadioGroup rgKeuzeKleur;
     private RadioButton rbKleurZwart, rbKleurWit, rbKleurRood, rbKleurBlauw;
     private Button btnVolgende;
-    private Model geselecteerdeModel;
     private Kleur geselecteerdeKleur;
     public static final String CONFIGURERENMODEL = "Model";
-    public static final String CONFIGURERENKLEUR = "Kleur";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,11 +85,11 @@ public class ConfiguratorKleurActivity extends AppCompatActivity {
 //                    lightyear.berekenSubtotaal(prijs);
 
                     Intent i = getIntent();
-                    geselecteerdeModel = i.getParcelableExtra(ConfiguratorLakActivity.CONFIGURERENMODEL);
+                    GeconfigureerdeLightyear lightyear = i.getParcelableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+                    lightyear.setKlr(geselecteerdeKleur);
 
-                    i = new Intent(ConfiguratorKleurActivity.this, ConfiguratorLakActivity.class);
-                    i.putExtra(CONFIGURERENMODEL, geselecteerdeModel);
-                    i.putExtra(CONFIGURERENKLEUR, geselecteerdeKleur);
+                    i = new Intent(v.getContext(), ConfiguratorLakActivity.class);
+                    i.putExtra(CONFIGURERENMODEL, lightyear);
                     startActivity(i);
                 }
             }

@@ -17,12 +17,8 @@ public class ConfiguratorLakActivity extends AppCompatActivity {
     private RadioGroup rgKeuzeLak;
     private RadioButton rbUnilak, rbMetalliclak, rbMattelak;
     private Button btnVolgende;
-    private Model geselecteerdeModel;
-    private Kleur geselecteerdeKleur;
     private Lak geselecteerdeLak;
     public static final String CONFIGURERENMODEL = "Model";
-    public static final String CONFIGURERENKLEUR = "Kleur";
-    public static final String CONFIGURERENLAK = "Lak";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,13 +83,11 @@ public class ConfiguratorLakActivity extends AppCompatActivity {
 //                    lightyear.berekenSubtotaal(prijs);
 
                     Intent i = getIntent();
-                    geselecteerdeModel = i.getParcelableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
-                    geselecteerdeKleur = i.getParcelableExtra(ConfiguratorKleurActivity.CONFIGURERENKLEUR);
+                    GeconfigureerdeLightyear lightyear = i.getParcelableExtra(ConfiguratorKleurActivity.CONFIGURERENMODEL);
+                    lightyear.setLk(geselecteerdeLak);
 
-                    i = new Intent(ConfiguratorLakActivity.this, ConfiguratorVelgActivity.class);
-                    i.putExtra(CONFIGURERENMODEL, geselecteerdeModel);
-                    i.putExtra(CONFIGURERENKLEUR, geselecteerdeKleur);
-                    i.putExtra(CONFIGURERENLAK, geselecteerdeLak);
+                    i = new Intent(v.getContext(), ConfiguratorVelgActivity.class);
+                    i.putExtra(CONFIGURERENMODEL, lightyear);
                     startActivity(i);
                 }
             }
