@@ -44,10 +44,14 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        //Een nieuwe databasehelper wordt geinstancieerd
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
+        //Waarde van de methode getKLantnaam wordt in een string gezet
         String strKlantnaam = databaseHelper.getKlantnaam();
+        //TextView wordt geinstancieerd
         TextView tvWelkomKlant = findViewById(R.id.tvWelkomKlant);
+        //De waarde van de string wordt getoond op de textview
         tvWelkomKlant.setText(String.format("Welkom %s",strKlantnaam));
 
 //        GeconfigureerdeLightyear geoonfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
