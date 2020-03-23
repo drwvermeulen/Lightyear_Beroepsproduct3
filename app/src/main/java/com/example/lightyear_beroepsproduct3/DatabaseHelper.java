@@ -106,6 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM KlantLogin WHERE mldrs = ?", new String[]{emailadres});
         if(cursor.getCount() > 0) {
+            cursor.close();
             return false;
         } else {
             return true;
@@ -117,7 +118,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM KlantLogin WHERE mldrs = ? AND wchtwrd = ?", new String[]{emailadres, wachtwoord});
         if(cursor.getCount() > 0) {
-//            klantnaam = cursor.getString(cursor.getColumnIndex("nm"));
+            //klantnaam = cursor.getString(cursor.getColumnIndex(COL_NAAM));
+            cursor.close();
             return true;
         } else {
             return false;
@@ -126,14 +128,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Methode die naam weergeeft bij profiel
     public String getKlantnaam() {
-        return klantnaam;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT nm FROM KlantLogin WHERE mldrs = ?", new String[]{LoginActivity.strEmailadres});
+        if(cursor != null && cursor.moveToFirst()) {
+            klantnaam = cursor.getString(cursor.getColumnIndex(COL_NAAM));
+            cursor.close();
+            return klantnaam;
+        } else {
+            return null;
+        }
     }
 
     //Methode die de geconfigureerde Lightyear weergeeft
     public GeconfigureerdeLightyear getGeconfigureerdeLightyear() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM GeconfigureerdeLightyear WHERE mldrs = ?", new String[]{LoginActivity.strEmailadres});
-        if(cursor.getCount() > 0) {
+        if(cursor != null && cursor.moveToFirst()) {
             Model model = Model.valueOf(cursor.getString(cursor.getColumnIndex(COL_MODEL)));
             Kleur kleur = Kleur.valueOf(cursor.getString(cursor.getColumnIndex(COL_KLEUR)));
             Lak lak = Lak.valueOf(cursor.getString(cursor.getColumnIndex(COL_LAK)));
@@ -145,6 +155,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             geconfigureerdeLightyear.setLk(lak);
             geconfigureerdeLightyear.setVlg(velg);
 
+            cursor.close();
             return geconfigureerdeLightyear;
         } else {
             return null;

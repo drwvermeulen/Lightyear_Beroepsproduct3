@@ -4,13 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Profile extends AppCompatActivity {
-    //Databasehelper
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +45,29 @@ public class Profile extends AppCompatActivity {
         });
 
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        String klantnaam = databaseHelper.getKlantnaam();
 
-        GeconfigureerdeLightyear geoonfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
+        String strKlantnaam = databaseHelper.getKlantnaam();
+        TextView tvWelkomKlant = findViewById(R.id.tvWelkomKlant);
+        tvWelkomKlant.setText(String.format("Welkom %s",strKlantnaam));
 
-        String lak = geoonfigureerdeLightyear.getLk().toString();
-        Lak lak2 = geoonfigureerdeLightyear.getLk();
+//        GeconfigureerdeLightyear geoonfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
+//
+//        //De waardes van de geconfigureerde lightyear worden in een string geplaatst
+//        String strMdl = geoonfigureerdeLightyear.getMdl().toString();
+//        String strKlr = geoonfigureerdeLightyear.getKlr().toString();
+//        String strLk = geoonfigureerdeLightyear.getLk().toString();
+//        String strVlg = geoonfigureerdeLightyear.getVlg().toString();
+//
+//        //De textview wordt geinitaliseerd
+//        TextView tvProfileMdl = findViewById(R.id.tvProfileMdl);
+//        TextView tvProfileKlr = findViewById(R.id.tvProfileKlr);
+//        TextView tvProfileLk = findViewById(R.id.tvProfileLk);
+//        TextView tvProfileVlg = findViewById(R.id.tvProfileVlg);
+//
+//        //De waardes in de string worden getoond op de textview
+//        tvProfileMdl.setText(strMdl);
+//        tvProfileKlr.setText(strKlr);
+//        tvProfileLk.setText(strLk);
+//        tvProfileVlg.setText(strVlg);
     }
 }

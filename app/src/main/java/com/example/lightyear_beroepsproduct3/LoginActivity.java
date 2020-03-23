@@ -11,17 +11,14 @@ import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
-    EditText etLoginEmailadres, etLoginWachtwoord;
     public static String strEmailadres;
-    private Button btnLogin;
-    private TextView tvRegistreren;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnLogin = findViewById(R.id.btnLogin);
+        Button btnLogin = findViewById(R.id.btnLogin);
         databaseHelper = new DatabaseHelper(this);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        tvRegistreren = findViewById(R.id.tvRegistreren);
+        TextView tvRegistreren = findViewById(R.id.tvRegistreren);
         tvRegistreren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
