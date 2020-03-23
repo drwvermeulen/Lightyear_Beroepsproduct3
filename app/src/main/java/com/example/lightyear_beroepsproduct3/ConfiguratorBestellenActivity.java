@@ -53,17 +53,22 @@ public class ConfiguratorBestellenActivity extends AppCompatActivity {
             }
         });
 
+        //Hier wordt de geconfigureerde lightyear opgehaald
         GeconfigureerdeLightyear lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+
+        //De waardes van de geconfigureerde lightyear worden in een string geplaatst
         String strMdl = lightyear.getMdl().toString();
         String strKlr = lightyear.getKlr().toString();
         String strLk = lightyear.getLk().toString();
         String strVlg = lightyear.getVlg().toString();
 
+        //De textview wordt geinitaliseerd
         TextView tvGeconfigureerdeMdl = findViewById(R.id.tvGeconfigureerdeMdl);
         TextView tvGeconfigureerdeKlr = findViewById(R.id.tvGeconfigureerdeKlr);
         TextView tvGeconfigureerdeLk = findViewById(R.id.tvGeconfigureerdeLk);
         TextView tvGeconfigureerdeVlg = findViewById(R.id.tvGeconfigureerdeVlg);
 
+        //De waardes in de string worden getoond op de textview
         tvGeconfigureerdeMdl.setText(strMdl);
         tvGeconfigureerdeKlr.setText(strKlr);
         tvGeconfigureerdeLk.setText(strLk);
