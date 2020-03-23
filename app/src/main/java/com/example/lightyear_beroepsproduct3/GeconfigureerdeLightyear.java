@@ -30,14 +30,6 @@ public class GeconfigureerdeLightyear implements Serializable {
         this.mdl = model;
     }
 
-    public GeconfigureerdeLightyear(Integer configuratienummer, Model model, Kleur kleur, Lak lak, Velg velg) {
-        this.cnfgrtnmmr = configuratienummer;
-        this.mdl = model;
-        this.klr = kleur;
-        this.lk = lak;
-        this.vlg = velg;
-    }
-
     public Integer getCnfgrtnmmr() {
         return cnfgrtnmmr;
     }

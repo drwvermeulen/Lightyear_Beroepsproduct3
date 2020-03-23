@@ -19,6 +19,7 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
     private Button btnVolgende;
     private Velg geselecteerdeVelg;
     public static final String CONFIGURERENMODEL = "Model";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,13 +82,13 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
 //                    int prijs = berekenPrijs();
 //                    lightyear.berekenSubtotaal(prijs);
 
-                    Intent i = getIntent();
-                    GeconfigureerdeLightyear lightyear = i.getParcelableExtra(ConfiguratorLakActivity.CONFIGURERENMODEL);
-                    lightyear.setVlg(geselecteerdeVelg);
-
-                    i = new Intent(v.getContext(), ConfiguratorBestellenActivity.class);
-                    i.putExtra(CONFIGURERENMODEL, lightyear);
-                    startActivity(i);
+                    GeconfigureerdeLightyear lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+                    if (lightyear != null) {
+                        lightyear.setVlg(geselecteerdeVelg);
+                        Intent i = new Intent(v.getContext(), ConfiguratorBestellenActivity.class);
+                        i.putExtra(CONFIGURERENMODEL, lightyear);
+                        startActivity(i);
+                    }
                 }
             }
         });

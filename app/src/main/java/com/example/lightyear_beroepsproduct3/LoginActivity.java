@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class LoginActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
     EditText etLoginEmailadres, etLoginWachtwoord;
+    public static String strEmailadres;
     private Button btnLogin;
     private TextView tvRegistreren;
 
@@ -26,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Hier worden de waardes die ingevuld zijn omgezet in een string
-                String strEmailadres = ((EditText)findViewById(R.id.etLoginEmailadres)).getText().toString();
+                strEmailadres = ((EditText)findViewById(R.id.etLoginEmailadres)).getText().toString();
                 String strWachtwoord = ((EditText)findViewById(R.id.etLoginWachtwoord)).getText().toString();
 
                 //Deze if statement controleert of beide velden zijn ingevuld

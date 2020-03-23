@@ -82,13 +82,13 @@ public class ConfiguratorLakActivity extends AppCompatActivity {
 //                    int prijs = berekenPrijs();
 //                    lightyear.berekenSubtotaal(prijs);
 
-                    Intent i = getIntent();
-                    GeconfigureerdeLightyear lightyear = i.getParcelableExtra(ConfiguratorKleurActivity.CONFIGURERENMODEL);
-                    lightyear.setLk(geselecteerdeLak);
-
-                    i = new Intent(v.getContext(), ConfiguratorVelgActivity.class);
-                    i.putExtra(CONFIGURERENMODEL, lightyear);
-                    startActivity(i);
+                    GeconfigureerdeLightyear lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+                    if (lightyear != null) {
+                        lightyear.setLk(geselecteerdeLak);
+                        Intent i = new Intent(v.getContext(), ConfiguratorVelgActivity.class);
+                        i.putExtra(CONFIGURERENMODEL, lightyear);
+                        startActivity(i);
+                    }
                 }
             }
         });

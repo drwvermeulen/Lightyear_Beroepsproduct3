@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Profile extends AppCompatActivity {
+    //Databasehelper
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +42,13 @@ public class Profile extends AppCompatActivity {
                 return false;
             }
         });
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        String klantnaam = databaseHelper.getKlantnaam();
+
+        GeconfigureerdeLightyear geoonfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
+
+        String lak = geoonfigureerdeLightyear.getLk().toString();
+        Lak lak2 = geoonfigureerdeLightyear.getLk();
     }
 }

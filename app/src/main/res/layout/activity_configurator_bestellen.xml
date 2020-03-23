@@ -38,4 +38,54 @@
         android:textSize="20dp"
         android:textColor="#000000" />
 
+    <TextView
+        android:id="@+id/tvGeconfigureerdeMdl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="310dp"
+        android:layout_centerHorizontal="true"
+        android:text="Model"
+        android:textSize="16dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvGeconfigureerdeKlr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="340dp"
+        android:layout_centerHorizontal="true"
+        android:text="Klr"
+        android:textSize="16dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvGeconfigureerdeLk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="370dp"
+        android:layout_centerHorizontal="true"
+        android:text="Lk"
+        android:textSize="16dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvGeconfigureerdeVlg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:layout_centerHorizontal="true"
+        android:text="Vlg"
+        android:textSize="16dp"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/btnBestellen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bestelling plaatsen"
+        android:width="175dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp" />
+
 </RelativeLayout>

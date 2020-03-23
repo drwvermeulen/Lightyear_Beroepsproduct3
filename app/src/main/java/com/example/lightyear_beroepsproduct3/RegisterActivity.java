@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
-    DatabaseHelper databaseHelper;
     private Button btnRegistreren;
     private TextView tvLogin;
 
@@ -25,7 +24,6 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnRegistreren = findViewById(R.id.btnRegistreren);
-        databaseHelper = new DatabaseHelper(this);
         btnRegistreren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +75,8 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     KlantLogin kl = new KlantLogin(strEmailadres, strNaam, strWachtwoord, strTelefoonnummer);
                     addKlantLogin(kl);
+                    Intent i = new Intent(v.getContext(), LoginActivity.class);
+                    startActivity(i);
                 }
             }
         });
@@ -93,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     //Methode die kijkt of het inserten gelukt is of niet
     public void addKlantLogin(KlantLogin kl) {
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
         boolean insertGelukt = databaseHelper.addKlantLogin(kl);
         if(insertGelukt) {
             Message.message(getApplicationContext(), "Registratie succesvol!");

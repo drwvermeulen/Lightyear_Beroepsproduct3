@@ -84,13 +84,13 @@ public class ConfiguratorKleurActivity extends AppCompatActivity {
 //                    int prijs = berekenPrijs();
 //                    lightyear.berekenSubtotaal(prijs);
 
-                    Intent i = getIntent();
-                    GeconfigureerdeLightyear lightyear = i.getParcelableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
-                    lightyear.setKlr(geselecteerdeKleur);
-
-                    i = new Intent(v.getContext(), ConfiguratorLakActivity.class);
-                    i.putExtra(CONFIGURERENMODEL, lightyear);
-                    startActivity(i);
+                    GeconfigureerdeLightyear lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+                    if (lightyear != null) {
+                        lightyear.setKlr(geselecteerdeKleur);
+                        Intent i = new Intent(v.getContext(), ConfiguratorLakActivity.class);
+                        i.putExtra(CONFIGURERENMODEL, lightyear);
+                        startActivity(i);
+                    }
                 }
             }
         });

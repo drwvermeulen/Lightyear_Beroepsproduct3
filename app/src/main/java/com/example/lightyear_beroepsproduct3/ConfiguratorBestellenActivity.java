@@ -6,10 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ConfiguratorBestellenActivity extends AppCompatActivity {
+    private Button btnBestellen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,44 @@ public class ConfiguratorBestellenActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        GeconfigureerdeLightyear lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+        String strMdl = lightyear.getMdl().toString();
+        String strKlr = lightyear.getKlr().toString();
+        String strLk = lightyear.getLk().toString();
+        String strVlg = lightyear.getVlg().toString();
+
+        TextView tvGeconfigureerdeMdl = findViewById(R.id.tvGeconfigureerdeMdl);
+        TextView tvGeconfigureerdeKlr = findViewById(R.id.tvGeconfigureerdeKlr);
+        TextView tvGeconfigureerdeLk = findViewById(R.id.tvGeconfigureerdeLk);
+        TextView tvGeconfigureerdeVlg = findViewById(R.id.tvGeconfigureerdeVlg);
+
+        tvGeconfigureerdeMdl.setText(strMdl);
+        tvGeconfigureerdeKlr.setText(strKlr);
+        tvGeconfigureerdeLk.setText(strLk);
+        tvGeconfigureerdeVlg.setText(strVlg);
+
+        btnBestellen = findViewById(R.id.btnBestellen);
+        btnBestellen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GeconfigureerdeLightyear lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+                addGeconfigureerdeLightyear(lightyear);
+                Intent i = new Intent(v.getContext(), MainActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+
+    //Methode die kijkt of het inserten gelukt is of niet
+    public void addGeconfigureerdeLightyear(GeconfigureerdeLightyear cl) {
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        boolean insertGelukt = databaseHelper.addGeconfigureerdeLightyear(cl);
+        if(insertGelukt) {
+            Message.message(getApplicationContext(), "Bestelling is geplaatst!");
+        } else {
+            Message.message(getApplicationContext(), "Oeps, er is iets fout gegaan!");
+        }
     }
 
     //Deze methode zorgt ervoor dat als je op de terugknop klikt, je naar de juiste activity gaat
