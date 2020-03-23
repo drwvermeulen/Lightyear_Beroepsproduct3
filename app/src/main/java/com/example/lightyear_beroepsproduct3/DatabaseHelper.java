@@ -144,10 +144,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM GeconfigureerdeLightyear WHERE mldrs = ?", new String[]{LoginActivity.strEmailadres});
         if(cursor != null && cursor.moveToFirst()) {
-            Model model = Model.valueOf(cursor.getString(cursor.getColumnIndex(COL_MODEL)));
-            Kleur kleur = Kleur.valueOf(cursor.getString(cursor.getColumnIndex(COL_KLEUR)));
-            Lak lak = Lak.valueOf(cursor.getString(cursor.getColumnIndex(COL_LAK)));
-            Velg velg = Velg.valueOf(cursor.getString(cursor.getColumnIndex(COL_VELG)));
+            Model model = Model.getModel(cursor.getString(cursor.getColumnIndex(COL_MODEL)));
+            Kleur kleur = Kleur.getKleur(cursor.getString(cursor.getColumnIndex(COL_KLEUR)));
+            Lak lak = Lak.getLak(cursor.getString(cursor.getColumnIndex(COL_LAK)));
+            Velg velg = Velg.getVelg(cursor.getString(cursor.getColumnIndex(COL_VELG)));
 
             GeconfigureerdeLightyear geconfigureerdeLightyear = GeconfigureerdeLightyear.construct(model);
 
@@ -160,6 +160,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return null;
         }
-
     }
 }

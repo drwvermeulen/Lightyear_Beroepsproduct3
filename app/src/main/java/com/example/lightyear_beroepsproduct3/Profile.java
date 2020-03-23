@@ -54,24 +54,25 @@ public class Profile extends AppCompatActivity {
         //De waarde van de string wordt getoond op de textview
         tvWelkomKlant.setText(String.format("Welkom %s",strKlantnaam));
 
-//        GeconfigureerdeLightyear geoonfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
-//
-//        //De waardes van de geconfigureerde lightyear worden in een string geplaatst
-//        String strMdl = geoonfigureerdeLightyear.getMdl().toString();
-//        String strKlr = geoonfigureerdeLightyear.getKlr().toString();
-//        String strLk = geoonfigureerdeLightyear.getLk().toString();
-//        String strVlg = geoonfigureerdeLightyear.getVlg().toString();
-//
-//        //De textview wordt geinitaliseerd
-//        TextView tvProfileMdl = findViewById(R.id.tvProfileMdl);
-//        TextView tvProfileKlr = findViewById(R.id.tvProfileKlr);
-//        TextView tvProfileLk = findViewById(R.id.tvProfileLk);
-//        TextView tvProfileVlg = findViewById(R.id.tvProfileVlg);
-//
-//        //De waardes in de string worden getoond op de textview
-//        tvProfileMdl.setText(strMdl);
-//        tvProfileKlr.setText(strKlr);
-//        tvProfileLk.setText(strLk);
-//        tvProfileVlg.setText(strVlg);
+        GeconfigureerdeLightyear geconfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
+
+        //De waardes van de geconfigureerde lightyear worden in een string geplaatst
+        String strMdl = geconfigureerdeLightyear.getMdl().toString();
+        String strKlr = geconfigureerdeLightyear.getKlr().toString();
+        String strLk = geconfigureerdeLightyear.getLk().toString();
+        String strVlg = geconfigureerdeLightyear.getVlg().toString();
+
+
+        //De textview wordt geinitaliseerd
+        TextView tvProfileMdl = findViewById(R.id.tvProfileMdl);
+        TextView tvProfileKlr = findViewById(R.id.tvProfileKlr);
+        TextView tvProfileLk = findViewById(R.id.tvProfileLk);
+        TextView tvProfileVlg = findViewById(R.id.tvProfileVlg);
+
+        //De waardes in de string worden getoond op de textview
+        tvProfileMdl.setText(strMdl);
+        tvProfileKlr.setText(strKlr);
+        tvProfileLk.setText(strLk);
+        tvProfileVlg.setText(strVlg);
     }
 }
