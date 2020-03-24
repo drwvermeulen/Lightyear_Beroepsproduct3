@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lightyear_beroepsproduct3">
 
     <application
@@ -10,13 +9,16 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ConfiguratorBestellenActivity"></activity>
+        <activity android:name=".ProfileBestellingActivity"
+            android:parentActivityName=".ProfileActivity"
+            android:label="Details bestelling"></activity>
+        <activity android:name=".ConfiguratorBestellenActivity" />
         <activity android:name=".ConfiguratorVelgActivity" />
         <activity android:name=".ConfiguratorLakActivity" />
         <activity android:name=".ConfiguratorKleurActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Profile" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".ConfiguratorActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

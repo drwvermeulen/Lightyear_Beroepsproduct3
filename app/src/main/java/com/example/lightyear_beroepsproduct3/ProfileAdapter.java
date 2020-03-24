@@ -1,6 +1,7 @@
 package com.example.lightyear_beroepsproduct3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileViewHolder> {
@@ -31,10 +33,20 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProfileViewHolder holder, int position) {
-        holder.tvAantalBestellingen.setText(data1[position]);
-        holder.tvConfiguratieBestellingen.setText(data2[position]);
+    public void onBindViewHolder(@NonNull ProfileViewHolder holder, final int position) {
+        holder.tvConfiguratienummer.setText(data1[position]);
+        holder.tvConfiguratieItems.setText(data2[position]);
         holder.ivProfile.setImageResource(images[position]);
+        holder.clProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ProfileBestellingActivity.class);
+                i.putExtra("data1", data1[position]);
+                i.putExtra("data2", data2[position]);
+                i.putExtra("images", images[position]);
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -43,14 +55,16 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     }
 
     public class ProfileViewHolder extends RecyclerView.ViewHolder{
-        TextView tvAantalBestellingen, tvConfiguratieBestellingen;
+        TextView tvConfiguratienummer, tvConfiguratieItems;
         ImageView ivProfile;
+        ConstraintLayout clProfile;
 
         public ProfileViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvAantalBestellingen = itemView.findViewById(R.id.tvAantalBestellingen);
-            tvConfiguratieBestellingen = itemView.findViewById(R.id.tvConfiguratieBestellingen);
+            tvConfiguratienummer = itemView.findViewById(R.id.tvConfiguratienummer);
+            tvConfiguratieItems = itemView.findViewById(R.id.tvConfiguratieItems);
             ivProfile = itemView.findViewById(R.id.ivProfile);
+            clProfile = itemView.findViewById(R.id.clProfile);
         }
     }
 }

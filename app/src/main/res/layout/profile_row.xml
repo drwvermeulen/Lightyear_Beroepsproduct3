@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/clProfile">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -21,33 +22,36 @@
 
             <ImageView
                 android:id="@+id/ivProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/ic_launcher" />
 
             <TextView
-                android:id="@+id/tvAantalBestellingen"
+                android:id="@+id/tvConfiguratienummer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
                 android:text="Title"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
+                android:textColor="#000000"
                 app:layout_constraintStart_toEndOf="@+id/ivProfile"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvConfiguratieBestellingen"
+                android:id="@+id/tvConfiguratieItems"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/tvAantalBestellingen"
-                app:layout_constraintTop_toBottomOf="@+id/tvAantalBestellingen" />
+                android:textSize="12sp"
+                android:textColor="#000000"
+                app:layout_constraintStart_toStartOf="@+id/tvConfiguratienummer"
+                app:layout_constraintTop_toBottomOf="@+id/tvConfiguratienummer" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

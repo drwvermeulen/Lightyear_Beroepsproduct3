@@ -2,12 +2,12 @@
     <string name="app_name">Lightyear_Beroepsproduct3</string>
     <string name="btnVolgende">Volgende</string>
 
-    <string-array name="aantalBestellingen">
+    <string-array name="configuratienummer">
         <item>Bestelling 1</item>
         <item>Bestelling 2</item>
         <item>Bestelling 3</item>
     </string-array>
-    <string-array name="configuratieBestellingen">
+    <string-array name="configuratieItems">
         <item>Configuratie</item>
         <item>Configuratie 2</item>
         <item>Configuratie 3</item>

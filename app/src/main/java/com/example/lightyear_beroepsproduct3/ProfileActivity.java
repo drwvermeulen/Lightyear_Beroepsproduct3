@@ -13,10 +13,10 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Profile extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
     RecyclerView rvProfileBestellingen;
     String s1[], s2[];
-    int images[] = {R.drawable.one, R.drawable.two, R.drawable.three};
+    int images[] = {R.drawable.lightyearone, R.drawable.lightyearone, R.drawable.lightyearone};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,8 @@ public class Profile extends AppCompatActivity {
 
         rvProfileBestellingen = findViewById(R.id.rvProfileBestellingen);
 
-        s1 = getResources().getStringArray(R.array.aantalBestellingen);
-        s2 = getResources().getStringArray(R.array.configuratieBestellingen);
+        s1 = getResources().getStringArray(R.array.configuratienummer);
+        s2 = getResources().getStringArray(R.array.configuratieItems);
 
         ProfileAdapter profileAdapter = new ProfileAdapter(this, s1, s2, images);
         rvProfileBestellingen.setAdapter(profileAdapter);
