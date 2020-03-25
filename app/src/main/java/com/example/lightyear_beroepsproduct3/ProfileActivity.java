@@ -49,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity {
         //TextView wordt geinstancieerd
         TextView tvWelkomKlant = findViewById(R.id.tvWelkomKlant);
         //De waarde van de string wordt getoond op de textview
-        tvWelkomKlant.setText(String.format("Welkom %s, bekijk hieronder uw bestelling(en):",strKlantnaam));
+        tvWelkomKlant.setText(String.format("Welkom %s",strKlantnaam));
 //
 //        GeconfigureerdeLightyear geconfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
 //
