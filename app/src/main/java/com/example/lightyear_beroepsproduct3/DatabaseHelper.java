@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import static com.example.lightyear_beroepsproduct3.LoginActivity.strEmailadres;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     //Naam  van de database
     private static final String DATABASE_NAME = "LightyearDatabase";
@@ -25,6 +27,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_NAAM + " TEXT NOT NULL, "
             + COL_TELEFOONNUMMER + " TEXT NOT NULL,"
             + "CONSTRAINT " + CONSTRAINT_PK_MLDRS + " PRIMARY KEY (" + COL_EMALADRES + "))";
+
+    //Dit is de string die de tabel verwijdert
+    private String strDropTableKlantLogin = "DROP TABLE IF EXISTS " + TABLE_KLANTLOGIN;
 
     //Deez strings worden gebruikt voor de tabel geconfigureerde lightyear
     private static final String TABLE_GECONFIGUREERDELIGHTYEAR = "GeconfigureerdeLightyear";
@@ -48,6 +53,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COL_VELG + " TEXT NOT NULL, "
             + "CONSTRAINT " + CONSTRAINT_FK_MLDRS_KLANTLOGIN + " FOREIGN KEY (" + COL_EMAILADRES_KLANTLOGIN + ") REFERENCES " + TABLE_KLANTLOGIN + " (" + COL_EMALADRES + "))";
 
+    //Dit is de string die de tabel verwijdert
+    private String strDropTableGeconfigureerdeLightyear = "DROP TABLE IF EXISTS " + TABLE_GECONFIGUREERDELIGHTYEAR;
+
     //Klasse variabelen
     private String klantnaam;
 
@@ -63,8 +71,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
-//        onCreate(db);
+        db.execSQL(strDropTableKlantLogin);
+        db.execSQL(strDropTableGeconfigureerdeLightyear);
+        onCreate(db);
     }
 
     //Deze methode voegt een klant toe zodat deze kan inloggen
@@ -88,7 +97,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Boolean addGeconfigureerdeLightyear(GeconfigureerdeLightyear cl) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COL_EMAILADRES_KLANTLOGIN, LoginActivity.strEmailadres);
+        values.put(COL_EMAILADRES_KLANTLOGIN, strEmailadres);
         values.put(COL_MODEL, cl.getMdl().toString());
         values.put(COL_KLEUR, cl.getKlr().toString());
         values.put(COL_LAK, cl.getLk().toString());
@@ -130,7 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Methode die naam weergeeft bij profiel
     public String getKlantnaam() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT nm FROM KlantLogin WHERE mldrs = ?", new String[]{LoginActivity.strEmailadres});
+        Cursor cursor = db.rawQuery("SELECT nm FROM KlantLogin WHERE mldrs = ?", new String[]{strEmailadres});
         if(cursor != null && cursor.moveToFirst()) {
             klantnaam = cursor.getString(cursor.getColumnIndex(COL_NAAM));
             cursor.close();
@@ -143,7 +152,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Methode die de geconfigureerde Lightyear weergeeft
     public GeconfigureerdeLightyear getGeconfigureerdeLightyear() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM GeconfigureerdeLightyear WHERE mldrs = ?", new String[]{LoginActivity.strEmailadres});
+        Cursor cursor = db.rawQuery("SELECT * FROM GeconfigureerdeLightyear WHERE mldrs = ?", new String[]{strEmailadres});
         if(cursor != null && cursor.moveToFirst()) {
             Model model = Model.getModel(cursor.getString(cursor.getColumnIndex(COL_MODEL)));
             Kleur kleur = Kleur.getKleur(cursor.getString(cursor.getColumnIndex(COL_KLEUR)));
@@ -161,6 +170,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return null;
         }
+    }
 
+    public Cursor getCursorGeconfigureerdeLightyear() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null) {
+            cursor = db.rawQuery("SELECT cnfgrtnmmr, mdl, klr, lk, vlg FROM GeconfigureerdeLightyear WHERE mldrs = ?", new String[]{strEmailadres}, null);
+        }
+        return cursor;
     }
 }
