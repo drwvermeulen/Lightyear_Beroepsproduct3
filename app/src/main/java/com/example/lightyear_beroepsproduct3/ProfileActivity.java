@@ -33,8 +33,6 @@ public class ProfileActivity extends AppCompatActivity {
         //De waarde van de string wordt getoond op de textview
         tvWelkomKlant.setText(String.format("Welkom %s",strKlantnaam));
 
-<<<<<<< HEAD:app/src/main/java/com/example/lightyear_beroepsproduct3/ProfileActivity.java
-<<<<<<< HEAD:app/src/main/java/com/example/lightyear_beroepsproduct3/ProfileActivity.java
         GeconfigureerdeLightyear geconfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
 
         //De waardes van de geconfigureerde lightyear worden in een string geplaatst
@@ -42,6 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
         String strKlr = geconfigureerdeLightyear.getKlr().toString();
         String strLk = geconfigureerdeLightyear.getLk().toString();
         String strVlg = geconfigureerdeLightyear.getVlg().toString();
+
 
         //De textview wordt geinitaliseerd
         TextView tvProfileMdl = findViewById(R.id.tvProfileMdl);
@@ -80,31 +79,5 @@ public class ProfileActivity extends AppCompatActivity {
                 return false;
             }
         });
-=======
-=======
->>>>>>> parent of 4cb19c7... Enums aangepast, zodat de waardes getoond kunnen worden in profile:app/src/main/java/com/example/lightyear_beroepsproduct3/Profile.java
-//        GeconfigureerdeLightyear geoonfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
-//
-//        //De waardes van de geconfigureerde lightyear worden in een string geplaatst
-//        String strMdl = geoonfigureerdeLightyear.getMdl().toString();
-//        String strKlr = geoonfigureerdeLightyear.getKlr().toString();
-//        String strLk = geoonfigureerdeLightyear.getLk().toString();
-//        String strVlg = geoonfigureerdeLightyear.getVlg().toString();
-//
-//        //De textview wordt geinitaliseerd
-//        TextView tvProfileMdl = findViewById(R.id.tvProfileMdl);
-//        TextView tvProfileKlr = findViewById(R.id.tvProfileKlr);
-//        TextView tvProfileLk = findViewById(R.id.tvProfileLk);
-//        TextView tvProfileVlg = findViewById(R.id.tvProfileVlg);
-//
-//        //De waardes in de string worden getoond op de textview
-//        tvProfileMdl.setText(strMdl);
-//        tvProfileKlr.setText(strKlr);
-//        tvProfileLk.setText(strLk);
-//        tvProfileVlg.setText(strVlg);
-<<<<<<< HEAD:app/src/main/java/com/example/lightyear_beroepsproduct3/ProfileActivity.java
->>>>>>> parent of 4cb19c7... Enums aangepast, zodat de waardes getoond kunnen worden in profile:app/src/main/java/com/example/lightyear_beroepsproduct3/Profile.java
-=======
->>>>>>> parent of 4cb19c7... Enums aangepast, zodat de waardes getoond kunnen worden in profile:app/src/main/java/com/example/lightyear_beroepsproduct3/Profile.java
     }
 }
