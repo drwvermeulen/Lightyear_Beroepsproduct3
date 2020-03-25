@@ -7,21 +7,51 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class ProfileActivity extends AppCompatActivity {
-    RecyclerView rvProfileBestellingen;
-    String s1[], s2[];
-    int images[] = {R.drawable.lightyearone, R.drawable.lightyearone, R.drawable.lightyearone};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        //Een nieuwe databasehelper wordt geinstancieerd
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
+        //Waarde van de methode getKLantnaam wordt in een string gezet
+        String strKlantnaam = databaseHelper.getKlantnaam();
+        //TextView wordt geinstancieerd
+        TextView tvWelkomKlant = findViewById(R.id.tvWelkomKlant);
+        //De waarde van de string wordt getoond op de textview
+        tvWelkomKlant.setText(String.format("Welkom %s",strKlantnaam));
+
+        GeconfigureerdeLightyear geconfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
+
+        //De waardes van de geconfigureerde lightyear worden in een string geplaatst
+        String strMdl = geconfigureerdeLightyear.getMdl().toString();
+        String strKlr = geconfigureerdeLightyear.getKlr().toString();
+        String strLk = geconfigureerdeLightyear.getLk().toString();
+        String strVlg = geconfigureerdeLightyear.getVlg().toString();
+
+        //De textview wordt geinitaliseerd
+        TextView tvProfileMdl = findViewById(R.id.tvProfileMdl);
+        TextView tvProfileKlr = findViewById(R.id.tvProfileKlr);
+        TextView tvProfileLk = findViewById(R.id.tvProfileLk);
+        TextView tvProfileVlg = findViewById(R.id.tvProfileVlg);
+
+        //De waardes in de string worden getoond op de textview
+        tvProfileMdl.setText(strMdl);
+        tvProfileKlr.setText(strKlr);
+        tvProfileLk.setText(strLk);
+        tvProfileVlg.setText(strVlg);
 
         //Initialiseert en wijst variabele toe
         BottomNavigationView bnvBottomNavigation = findViewById(R.id.bnvBottomNavigation);
@@ -48,45 +78,5 @@ public class ProfileActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        rvProfileBestellingen = findViewById(R.id.rvProfileBestellingen);
-
-        s1 = getResources().getStringArray(R.array.configuratienummer);
-        s2 = getResources().getStringArray(R.array.configuratieItems);
-
-        ProfileAdapter profileAdapter = new ProfileAdapter(this, s1, s2, images);
-        rvProfileBestellingen.setAdapter(profileAdapter);
-        rvProfileBestellingen.setLayoutManager(new LinearLayoutManager(this));
-
-        //Een nieuwe databasehelper wordt geinstancieerd
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
-
-//        //Waarde van de methode getKLantnaam wordt in een string gezet
-//        String strKlantnaam = databaseHelper.getKlantnaam();
-//        //TextView wordt geinstancieerd
-//        TextView tvWelkomKlant = findViewById(R.id.tvWelkomKlant);
-//        //De waarde van de string wordt getoond op de textview
-//        tvWelkomKlant.setText(String.format("Welkom %s",strKlantnaam));
-//
-//        GeconfigureerdeLightyear geconfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
-//
-//        //De waardes van de geconfigureerde lightyear worden in een string geplaatst
-//        String strMdl = geconfigureerdeLightyear.getMdl().toString();
-//        String strKlr = geconfigureerdeLightyear.getKlr().toString();
-//        String strLk = geconfigureerdeLightyear.getLk().toString();
-//        String strVlg = geconfigureerdeLightyear.getVlg().toString();
-//
-//
-//        //De textview wordt geinitaliseerd
-//        TextView tvProfileMdl = findViewById(R.id.tvProfileMdl);
-//        TextView tvProfileKlr = findViewById(R.id.tvProfileKlr);
-//        TextView tvProfileLk = findViewById(R.id.tvProfileLk);
-//        TextView tvProfileVlg = findViewById(R.id.tvProfileVlg);
-//
-//        //De waardes in de string worden getoond op de textview
-//        tvProfileMdl.setText(strMdl);
-//        tvProfileKlr.setText(strKlr);
-//        tvProfileLk.setText(strLk);
-//        tvProfileVlg.setText(strVlg);
     }
 }

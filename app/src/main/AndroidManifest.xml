@@ -9,9 +9,6 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileBestellingActivity"
-            android:parentActivityName=".ProfileActivity"
-            android:label="Details bestelling"></activity>
         <activity android:name=".ConfiguratorBestellenActivity" />
         <activity android:name=".ConfiguratorVelgActivity" />
         <activity android:name=".ConfiguratorLakActivity" />
