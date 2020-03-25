@@ -34,6 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
         tvWelkomKlant.setText(String.format("Welkom %s",strKlantnaam));
 
 <<<<<<< HEAD:app/src/main/java/com/example/lightyear_beroepsproduct3/ProfileActivity.java
+<<<<<<< HEAD:app/src/main/java/com/example/lightyear_beroepsproduct3/ProfileActivity.java
         GeconfigureerdeLightyear geconfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
 
         //De waardes van de geconfigureerde lightyear worden in een string geplaatst
@@ -80,6 +81,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 =======
+=======
+>>>>>>> parent of 4cb19c7... Enums aangepast, zodat de waardes getoond kunnen worden in profile:app/src/main/java/com/example/lightyear_beroepsproduct3/Profile.java
 //        GeconfigureerdeLightyear geoonfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
 //
 //        //De waardes van de geconfigureerde lightyear worden in een string geplaatst
@@ -99,6 +102,9 @@ public class ProfileActivity extends AppCompatActivity {
 //        tvProfileKlr.setText(strKlr);
 //        tvProfileLk.setText(strLk);
 //        tvProfileVlg.setText(strVlg);
+<<<<<<< HEAD:app/src/main/java/com/example/lightyear_beroepsproduct3/ProfileActivity.java
+>>>>>>> parent of 4cb19c7... Enums aangepast, zodat de waardes getoond kunnen worden in profile:app/src/main/java/com/example/lightyear_beroepsproduct3/Profile.java
+=======
 >>>>>>> parent of 4cb19c7... Enums aangepast, zodat de waardes getoond kunnen worden in profile:app/src/main/java/com/example/lightyear_beroepsproduct3/Profile.java
     }
 }
