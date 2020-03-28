@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button btnLogin = findViewById(R.id.btnLogin);
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new DatabaseHelper(LoginActivity.this);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

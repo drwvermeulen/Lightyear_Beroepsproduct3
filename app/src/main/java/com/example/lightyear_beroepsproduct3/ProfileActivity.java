@@ -17,17 +17,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
     private DatabaseHelper databaseHelper;
     private ArrayList<String> cnfgrtnmmr, mdl, klr, lk, vlg;
-    private ProfileAdapter profileAdapter;
+    private ArrayList<GeconfigureerdeLightyear> geconfigureerdeLightyearList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         //Een nieuwe databasehelper wordt geinstancieerd
         databaseHelper = new DatabaseHelper(ProfileActivity.this);
@@ -40,9 +39,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         storeGeconfigureerdeLightyearInArray();
 
-        profileAdapter = new ProfileAdapter(ProfileActivity.this, cnfgrtnmmr, mdl, klr, lk, vlg);
+        ProfileAdapter profileAdapter = new ProfileAdapter(ProfileActivity.this, cnfgrtnmmr, mdl, klr, lk, vlg);
         recyclerView.setAdapter(profileAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ProfileActivity.this));
+
+//        geconfigureerdeLightyearList = databaseHelper.getGeconfigureerdeLightyear2();
 
         //Waarde van de methode getKLantnaam wordt in een string gezet
         String strKlantnaam = databaseHelper.getKlantnaam();

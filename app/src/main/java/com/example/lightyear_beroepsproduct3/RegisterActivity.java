@@ -93,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     //Methode die kijkt of het inserten gelukt is of niet
     public void addKlantLogin(KlantLogin kl) {
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        DatabaseHelper databaseHelper = new DatabaseHelper(RegisterActivity.this);
         boolean insertGelukt = databaseHelper.addKlantLogin(kl);
         if(insertGelukt) {
             Message.message(getApplicationContext(), "Registratie succesvol!");

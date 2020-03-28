@@ -41,6 +41,11 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         holder.tvPRVelg.setText(String.valueOf(velg.get(position)));
     }
 
+//    @Override
+//    public int getItemCount() {
+//        return configuratienummer.size();
+//    }
+
     @Override
     public int getItemCount() {
         return configuratienummer.size();

@@ -1,7 +1,6 @@
 package com.example.lightyear_beroepsproduct3;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class GeconfigureerdeLightyear implements Serializable {
     private Integer cnfgrtnmmr;

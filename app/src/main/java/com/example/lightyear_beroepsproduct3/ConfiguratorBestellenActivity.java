@@ -88,7 +88,7 @@ public class ConfiguratorBestellenActivity extends AppCompatActivity {
 
     //Methode die kijkt of het inserten gelukt is of niet
     public void addGeconfigureerdeLightyear(GeconfigureerdeLightyear cl) {
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        DatabaseHelper databaseHelper = new DatabaseHelper(ConfiguratorBestellenActivity.this);
         boolean insertGelukt = databaseHelper.addGeconfigureerdeLightyear(cl);
         if(insertGelukt) {
             Message.message(getApplicationContext(), "Bestelling is geplaatst!");

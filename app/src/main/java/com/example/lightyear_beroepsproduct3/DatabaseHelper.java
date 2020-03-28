@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 import static com.example.lightyear_beroepsproduct3.LoginActivity.strEmailadres;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -58,6 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Klasse variabelen
     private String klantnaam;
+//    private ArrayList<GeconfigureerdeLightyear> geconfigureerdeLightyearList;
 
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, 1);
@@ -171,6 +174,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return null;
         }
     }
+
+    /*
+    //Methode die de geconfigureerde Lightyear weergeeft
+    public ArrayList getGeconfigureerdeLightyear2() {
+        geconfigureerdeLightyearList = new ArrayList<GeconfigureerdeLightyear>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM GeconfigureerdeLightyear WHERE mldrs = ?", new String[]{strEmailadres});
+        if(cursor != null && cursor.moveToFirst()) {
+            Model model = Model.getModel(cursor.getString(cursor.getColumnIndex(COL_MODEL)));
+            Kleur kleur = Kleur.getKleur(cursor.getString(cursor.getColumnIndex(COL_KLEUR)));
+            Lak lak = Lak.getLak(cursor.getString(cursor.getColumnIndex(COL_LAK)));
+            Velg velg = Velg.getVelg(cursor.getString(cursor.getColumnIndex(COL_VELG)));
+
+            GeconfigureerdeLightyear geconfigureerdeLightyear = GeconfigureerdeLightyear.construct(model);
+
+            geconfigureerdeLightyear.setKlr(kleur);
+            geconfigureerdeLightyear.setLk(lak);
+            geconfigureerdeLightyear.setVlg(velg);
+
+            cursor.close();
+
+            geconfigureerdeLightyearList.add(geconfigureerdeLightyear);
+            return geconfigureerdeLightyearList;
+        } else {
+            return null;
+        }
+    }
+     */
 
     public Cursor getCursorGeconfigureerdeLightyear() {
         SQLiteDatabase db = this.getReadableDatabase();
