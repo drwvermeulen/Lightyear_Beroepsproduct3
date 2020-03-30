@@ -8,20 +8,23 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ConfiguratorBestellenActivity extends AppCompatActivity {
+    private GeconfigureerdeLightyear lightyear;
+    private ImageView ivConfiguratorLightyear;
+    private DatabaseHelper databaseHelper;
+    private Integer pnrdtn;
+    private TextView tvGeconfigureerdePnrdtn, tvPrijs;
     private Button btnBestellen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configurator_bestellen);
-
-        //Terugknop
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Initialiseert en wijst variabele toe
         BottomNavigationView bnvTopNavigation = findViewById(R.id.bnvTopNavigation);
@@ -53,8 +56,10 @@ public class ConfiguratorBestellenActivity extends AppCompatActivity {
             }
         });
 
-        //Hier wordt de geconfigureerde lightyear opgehaald
-        GeconfigureerdeLightyear lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+        lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+
+        ivConfiguratorLightyear = findViewById(R.id.ivConfiguratorLightyear);
+        ivConfiguratorLightyear.setImageResource(lightyear.getImageResource());
 
         //De waardes van de geconfigureerde lightyear worden in een string geplaatst
         String strMdl = lightyear.getMdl().toString();
@@ -67,6 +72,7 @@ public class ConfiguratorBestellenActivity extends AppCompatActivity {
         TextView tvGeconfigureerdeKlr = findViewById(R.id.tvGeconfigureerdeKlr);
         TextView tvGeconfigureerdeLk = findViewById(R.id.tvGeconfigureerdeLk);
         TextView tvGeconfigureerdeVlg = findViewById(R.id.tvGeconfigureerdeVlg);
+        tvGeconfigureerdePnrdtn = findViewById(R.id.tvGeconfigureerdePnrdtn);
 
         //De waardes in de string worden getoond op de textview
         tvGeconfigureerdeMdl.setText(strMdl);
@@ -74,12 +80,30 @@ public class ConfiguratorBestellenActivity extends AppCompatActivity {
         tvGeconfigureerdeLk.setText(strLk);
         tvGeconfigureerdeVlg.setText(strVlg);
 
+        if(lightyear.getMdl().equals(Model.LightyearPioneer)) {
+            databaseHelper = new DatabaseHelper(ConfiguratorBestellenActivity.this);
+            pnrdtn = databaseHelper.getNummerReeksVolgendeWaarde(DatabaseHelper.PIONEERNUMMERREEKSID);
+            tvGeconfigureerdePnrdtn.setText(pnrdtn.toString());
+        } else {
+            tvGeconfigureerdePnrdtn.setVisibility(View.INVISIBLE);
+        }
+
+        tvPrijs = findViewById(R.id.tvPrijs);
+        tvPrijs.setText(String.format("€ %,.2f", lightyear.berekenPrijs()));
+
         btnBestellen = findViewById(R.id.btnBestellen);
         btnBestellen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GeconfigureerdeLightyear lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
-                addGeconfigureerdeLightyear(lightyear);
+                databaseHelper = new DatabaseHelper(ConfiguratorBestellenActivity.this);
+                if(lightyear instanceof GeconfigureerdeLightyearPioneerEdition) {
+                    GeconfigureerdeLightyearPioneerEdition clpe = (GeconfigureerdeLightyearPioneerEdition) lightyear;
+                   clpe.setPnrdtn(pnrdtn);
+                   addGeconfigureerdeLightyear(clpe);
+                   databaseHelper.updateNummerReeksVolgendeWaarde(DatabaseHelper.PIONEERNUMMERREEKSID, pnrdtn + 1);
+                } else {
+                    addGeconfigureerdeLightyear(lightyear);
+                }
                 Intent i = new Intent(v.getContext(), MainActivity.class);
                 startActivity(i);
             }
@@ -88,23 +112,12 @@ public class ConfiguratorBestellenActivity extends AppCompatActivity {
 
     //Methode die kijkt of het inserten gelukt is of niet
     public void addGeconfigureerdeLightyear(GeconfigureerdeLightyear cl) {
-        DatabaseHelper databaseHelper = new DatabaseHelper(ConfiguratorBestellenActivity.this);
+        databaseHelper = new DatabaseHelper(ConfiguratorBestellenActivity.this);
         boolean insertGelukt = databaseHelper.addGeconfigureerdeLightyear(cl);
         if(insertGelukt) {
             Message.message(getApplicationContext(), "Bestelling is geplaatst!");
         } else {
             Message.message(getApplicationContext(), "Oeps, er is iets fout gegaan!");
         }
-    }
-
-    //Deze methode zorgt ervoor dat als je op de terugknop klikt, je naar de juiste activity gaat
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

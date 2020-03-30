@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".ConfiguratorVelgActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -12,21 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        app:itemBackground="@color/colorPrimary"
+        app:itemBackground="@color/colorWhite"
         app:itemTextColor="@drawable/selectortp"
         app:itemIconTint="@drawable/selectortp"
         app:menu="@menu/menu_navigation_top" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/ivConfiguratorLightyear"
+        android:paddingTop="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="-25dp"
-        app:srcCompat="@drawable/lightyearone" />
+        app:srcCompat="@drawable/lightyearone_wit" />
 
     <TextView
         android:id="@+id/tvConfiguratorVelg"
@@ -42,28 +43,42 @@
         android:id="@+id/rgKeuzeVelg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="63dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="300dp" >
 
         <RadioButton
             android:id="@+id/rb16Velg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Velg \nPrijs" />
+            android:text="Velg \nPrijs"
+            android:onClick="onRadioButtonClicked" />
 
         <RadioButton
             android:id="@+id/rb17Velg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Velg \nPrijs" />
+            android:text="Velg \nPrijs"
+            android:onClick="onRadioButtonClicked" />
 
         <RadioButton
             android:id="@+id/rb18Velg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Velg \nPrijs" />
+            android:text="Velg \nPrijs"
+            android:onClick="onRadioButtonClicked" />
 
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvPrijs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prijs"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="75dp" />
 
     <Button
         android:id="@+id/btnVolgende"

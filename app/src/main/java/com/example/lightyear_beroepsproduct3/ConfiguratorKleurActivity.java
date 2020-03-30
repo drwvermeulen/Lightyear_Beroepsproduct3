@@ -8,25 +8,26 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ConfiguratorKleurActivity extends AppCompatActivity {
+    private GeconfigureerdeLightyear lightyear;
+    private ImageView ivConfiguratorLightyear;
     private RadioGroup rgKeuzeKleur;
     private RadioButton rbKleurZwart, rbKleurWit, rbKleurRood, rbKleurBlauw;
+    private TextView tvPrijs;
     private Button btnVolgende;
     private Kleur geselecteerdeKleur;
-    public static final String CONFIGURERENMODEL = "Model";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configurator_kleur);
-
-        //Terugknop
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Initialiseert en wijst variabele toe
         BottomNavigationView bnvTopNavigation = findViewById(R.id.bnvTopNavigation);
@@ -58,6 +59,10 @@ public class ConfiguratorKleurActivity extends AppCompatActivity {
             }
         });
 
+        lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+
+        ivConfiguratorLightyear = findViewById(R.id.ivConfiguratorLightyear);
+
         rgKeuzeKleur = findViewById(R.id.rgKeuzeKleur);
         rbKleurZwart = findViewById(R.id.rbKleurZwart);
         rbKleurZwart.setText(Kleur.KleurZwart.toString());
@@ -67,6 +72,9 @@ public class ConfiguratorKleurActivity extends AppCompatActivity {
         rbKleurRood.setText(Kleur.KleurRood.toString());
         rbKleurBlauw = findViewById(R.id.rbKleurBlauw);
         rbKleurBlauw.setText(Kleur.KleurBlauw.toString());
+
+        tvPrijs = findViewById(R.id.tvPrijs);
+        tvPrijs.setText(String.format("€ %,.2f", lightyear.berekenPrijs()));
 
         btnVolgende = findViewById(R.id.btnVolgende);
         btnVolgende.setOnClickListener(new View.OnClickListener() {
@@ -80,31 +88,15 @@ public class ConfiguratorKleurActivity extends AppCompatActivity {
                 else {
                     //One of the radio buttons are selected
                     findRadioButton(checkedID);
-//                    GeconfigureerdeLightyear lightyear = GeconfigureerdeLightyear.construct(geselecteerdeModel);
-//                    int prijs = berekenPrijs();
-//                    lightyear.berekenSubtotaal(prijs);
-
-                    GeconfigureerdeLightyear lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
                     if (lightyear != null) {
                         lightyear.setKlr(geselecteerdeKleur);
                         Intent i = new Intent(v.getContext(), ConfiguratorLakActivity.class);
-                        i.putExtra(CONFIGURERENMODEL, lightyear);
+                        i.putExtra(ConfiguratorActivity.CONFIGURERENMODEL, lightyear);
                         startActivity(i);
                     }
                 }
             }
         });
-    }
-
-    //Deze methode zorgt ervoor dat als je op de terugknop klikt, je naar de juiste activity gaat
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     //Deze methode kijkt welke radiobutton is geselecteerd en geeft de juiste waarde mee
@@ -122,6 +114,32 @@ public class ConfiguratorKleurActivity extends AppCompatActivity {
             case R.id.rbKleurBlauw:
                 geselecteerdeKleur = Kleur.KleurBlauw;
                 break;
+        }
+    }
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        if(checked) {
+            Kleur klr = null;
+            switch(view.getId()) {
+                case R.id.rbKleurZwart:
+                    klr = Kleur.KleurZwart;
+                    ivConfiguratorLightyear.setImageResource(R.drawable.lightyearone_zwart);
+                    break;
+                case R.id.rbKleurWit:
+                    klr = Kleur.KleurWit;
+                    ivConfiguratorLightyear.setImageResource(R.drawable.lightyearone_wit);
+                    break;
+                case R.id.rbKleurRood:
+                    klr = Kleur.KleurRood;
+                    ivConfiguratorLightyear.setImageResource(R.drawable.lightyearone_rood);
+                    break;
+                case R.id.rbKleurBlauw:
+                    klr = Kleur.KleurBlauw;
+                    ivConfiguratorLightyear.setImageResource(R.drawable.lightyearone_blauw);
+                    break;
+            }
+            tvPrijs.setText(String.format("€ %,.2f", lightyear.berekenPrijs() + klr.getPrijs()));
         }
     }
 }

@@ -10,12 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ConfiguratorActivity extends AppCompatActivity {
     private RadioGroup rgKeuzeModel;
     private RadioButton rbLightyearOne, rbLightyearOnePioneer;
+    private TextView tvPrijsModel;
     private Button btnConfigureren;
     private Model geselecteerdeModel;
     public static final String CONFIGURERENMODEL = "Model";
@@ -29,7 +31,9 @@ public class ConfiguratorActivity extends AppCompatActivity {
         rbLightyearOne = findViewById(R.id.rbLightyearOne);
         rbLightyearOne.setText(Model.LightyearOne.toString());
         rbLightyearOnePioneer = findViewById(R.id.rbLightyearOnePioneer);
-        rbLightyearOnePioneer.setText(Model.LightyearOnePioneer.toString());
+        rbLightyearOnePioneer.setText(Model.LightyearPioneer.toString());
+
+        tvPrijsModel = findViewById(R.id.tvPrijsModel);
 
         btnConfigureren = findViewById(R.id.btnConfigureren);
         btnConfigureren.setOnClickListener(new View.OnClickListener() {
@@ -44,8 +48,6 @@ public class ConfiguratorActivity extends AppCompatActivity {
                     //One of the radio buttons are selected
                     findRadioButton(checkedID);
                     GeconfigureerdeLightyear lightyear = GeconfigureerdeLightyear.construct(geselecteerdeModel);
-//                    int prijs = berekenPrijs();
-//                    lightyear.berekenSubtotaal(prijs);
                     Intent i = new Intent (v.getContext(), ConfiguratorKleurActivity.class);
                     i.putExtra(CONFIGURERENMODEL, lightyear);
                     startActivity(i);
@@ -87,8 +89,24 @@ public class ConfiguratorActivity extends AppCompatActivity {
                 geselecteerdeModel = Model.LightyearOne;
                 break;
             case R.id.rbLightyearOnePioneer:
-                geselecteerdeModel = Model.LightyearOnePioneer;
+                geselecteerdeModel = Model.LightyearPioneer;
                 break;
+        }
+    }
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        if(checked) {
+            Model mdl = null;
+            switch(view.getId()) {
+                case R.id.rbLightyearOne:
+                    mdl = Model.LightyearOne;
+                    break;
+                case R.id.rbLightyearOnePioneer:
+                    mdl = Model.LightyearPioneer;
+                    break;
+            }
+            tvPrijsModel.setText(String.format("€ %,.2f", mdl.getPrijs()));
         }
     }
 }

@@ -8,25 +8,26 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ConfiguratorLakActivity extends AppCompatActivity {
+    private GeconfigureerdeLightyear lightyear;
+    private ImageView ivConfiguratorLightyear;
     private RadioGroup rgKeuzeLak;
     private RadioButton rbUnilak, rbMetalliclak, rbMattelak;
+    private TextView tvPrijs;
     private Button btnVolgende;
     private Lak geselecteerdeLak;
-    public static final String CONFIGURERENMODEL = "Model";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configurator_lak);
-
-        //Terugknop
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Initialiseert en wijst variabele toe
         BottomNavigationView bnvTopNavigation = findViewById(R.id.bnvTopNavigation);
@@ -58,6 +59,11 @@ public class ConfiguratorLakActivity extends AppCompatActivity {
             }
         });
 
+        lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+
+        ivConfiguratorLightyear = findViewById(R.id.ivConfiguratorLightyear);
+        ivConfiguratorLightyear.setImageResource(lightyear.getImageResource());
+
         rgKeuzeLak = findViewById(R.id.rgKeuzeLak);
         rbUnilak = findViewById(R.id.rbUnilak);
         rbUnilak.setText(Lak.Unilak.toString());
@@ -65,6 +71,9 @@ public class ConfiguratorLakActivity extends AppCompatActivity {
         rbMetalliclak.setText(Lak.Metalliclak.toString());
         rbMattelak = findViewById(R.id.rbMattelak);
         rbMattelak.setText(Lak.Mattelak.toString());
+
+        tvPrijs = findViewById(R.id.tvPrijs);
+        tvPrijs.setText(String.format("€ %,.2f", lightyear.berekenPrijs()));
 
         btnVolgende = findViewById(R.id.btnVolgende);
         btnVolgende.setOnClickListener(new View.OnClickListener() {
@@ -78,31 +87,15 @@ public class ConfiguratorLakActivity extends AppCompatActivity {
                 else {
                     //One of the radio buttons are selected
                     findRadioButton(checkedID);
-//                    GeconfigureerdeLightyear lightyear = GeconfigureerdeLightyear.construct(geselecteerdeModel);
-//                    int prijs = berekenPrijs();
-//                    lightyear.berekenSubtotaal(prijs);
-
-                    GeconfigureerdeLightyear lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
                     if (lightyear != null) {
                         lightyear.setLk(geselecteerdeLak);
                         Intent i = new Intent(v.getContext(), ConfiguratorVelgActivity.class);
-                        i.putExtra(CONFIGURERENMODEL, lightyear);
+                        i.putExtra(ConfiguratorActivity.CONFIGURERENMODEL, lightyear);
                         startActivity(i);
                     }
                 }
             }
         });
-    }
-
-    //Deze methode zorgt ervoor dat als je op de terugknop klikt, je naar de juiste activity gaat
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     //Deze methode kijkt welke radiobutton is geselecteerd en geeft de juiste waarde mee
@@ -119,4 +112,25 @@ public class ConfiguratorLakActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        if(checked) {
+            Lak lk = null;
+            switch(view.getId()) {
+                case R.id.rbUnilak:
+                    lk = Lak.Unilak;
+                    break;
+                case R.id.rbMetalliclak:
+                    lk = Lak.Metalliclak;
+                    break;
+                case R.id.rbMattelak:
+                    lk = Lak.Mattelak;
+                    break;
+            }
+            tvPrijs.setText(String.format("€ %,.2f", lightyear.berekenPrijs() + lk.getPrijs()));
+        }
+    }
 }
+
+

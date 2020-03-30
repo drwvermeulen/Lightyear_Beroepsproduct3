@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
     private DatabaseHelper databaseHelper;
-    private ArrayList<String> cnfgrtnmmr, mdl, klr, lk, vlg;
     private ArrayList<GeconfigureerdeLightyear> geconfigureerdeLightyearList;
 
     @Override
@@ -27,23 +26,15 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-
-        //Een nieuwe databasehelper wordt geinstancieerd
         databaseHelper = new DatabaseHelper(ProfileActivity.this);
 
-        cnfgrtnmmr = new ArrayList<>();
-        mdl = new ArrayList<>();
-        klr = new ArrayList<>();
-        lk = new ArrayList<>();
-        vlg = new ArrayList<>();
+        geconfigureerdeLightyearList = new ArrayList<>();
 
-        storeGeconfigureerdeLightyearInArray();
+        geconfigureerdeLightyearList = databaseHelper.getGeconfigureerdeLightyearList();
 
-        ProfileAdapter profileAdapter = new ProfileAdapter(ProfileActivity.this, cnfgrtnmmr, mdl, klr, lk, vlg);
+        ProfileAdapter profileAdapter = new ProfileAdapter(ProfileActivity.this, geconfigureerdeLightyearList);
         recyclerView.setAdapter(profileAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ProfileActivity.this));
-
-//        geconfigureerdeLightyearList = databaseHelper.getGeconfigureerdeLightyear2();
 
         //Waarde van de methode getKLantnaam wordt in een string gezet
         String strKlantnaam = databaseHelper.getKlantnaam();
@@ -51,27 +42,6 @@ public class ProfileActivity extends AppCompatActivity {
         TextView tvWelkomKlant = findViewById(R.id.tvWelkomKlant);
         //De waarde van de string wordt getoond op de textview
         tvWelkomKlant.setText(String.format("Welkom %s",strKlantnaam));
-//
-//        GeconfigureerdeLightyear geconfigureerdeLightyear = databaseHelper.getGeconfigureerdeLightyear();
-//
-//        //De waardes van de geconfigureerde lightyear worden in een string geplaatst
-//        String strMdl = geconfigureerdeLightyear.getMdl().toString();
-//        String strKlr = geconfigureerdeLightyear.getKlr().toString();
-//        String strLk = geconfigureerdeLightyear.getLk().toString();
-//        String strVlg = geconfigureerdeLightyear.getVlg().toString();
-//
-//
-//        //De textview wordt geinitaliseerd
-//        TextView tvProfileMdl = findViewById(R.id.tvProfileMdl);
-//        TextView tvProfileKlr = findViewById(R.id.tvProfileKlr);
-//        TextView tvProfileLk = findViewById(R.id.tvProfileLk);
-//        TextView tvProfileVlg = findViewById(R.id.tvProfileVlg);
-//
-//        //De waardes in de string worden getoond op de textview
-//        tvProfileMdl.setText(strMdl);
-//        tvProfileKlr.setText(strKlr);
-//        tvProfileLk.setText(strLk);
-//        tvProfileVlg.setText(strVlg);
 
         //Initialiseert en wijst variabele toe
         BottomNavigationView bnvBottomNavigation = findViewById(R.id.bnvBottomNavigation);
@@ -98,20 +68,5 @@ public class ProfileActivity extends AppCompatActivity {
                 return false;
             }
         });
-    }
-
-    void storeGeconfigureerdeLightyearInArray() {
-        Cursor cursor = databaseHelper.getCursorGeconfigureerdeLightyear();
-        if(cursor.getCount() == 0) {
-            Message.message(getApplicationContext(), "Je hebt nog geen Lightyear besteld!");
-        } else {
-            while (cursor.moveToNext()) {
-                cnfgrtnmmr.add(cursor.getString(0));
-                mdl.add(cursor.getString(1));
-                klr.add(cursor.getString(2));
-                lk.add(cursor.getString(3));
-                vlg.add(cursor.getString(4));
-            }
-        }
     }
 }

@@ -4,14 +4,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Model {
-    LightyearOne("Lightyear One", 0),
-    LightyearOnePioneer("Lightyear One - Pioneer Edition", 1);
+    LightyearOne("Lightyear - One", 0),
+    LightyearPioneer("Lightyear - Pioneer Edition", 1);
 
     private String stringValue;
     private int intValue;
     private Model(String toString, int value) {
         stringValue = toString;
         intValue = value;
+    }
+
+    public Double getPrijs() {
+        Double prijs = 0.00;
+        switch (intValue) {
+            case 0:
+                prijs = 149000.00;
+                break;
+            case 1:
+                prijs = 199000.00;
+                break;
+        }
+        return prijs;
     }
 
     @Override

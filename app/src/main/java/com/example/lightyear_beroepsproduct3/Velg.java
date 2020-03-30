@@ -15,6 +15,22 @@ public enum Velg {
         intValue = value;
     }
 
+    public Double getPrijs() {
+        Double prijs = 0.00;
+        switch (intValue) {
+            case 0:
+                prijs = 1000.00;
+                break;
+            case 1:
+                prijs = 2000.00;
+                break;
+            case 2:
+                prijs = 3000.00;
+                break;
+        }
+        return prijs;
+    }
+
     @Override
     public String toString() {
         return stringValue;

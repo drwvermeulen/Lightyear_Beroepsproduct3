@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
+    private DatabaseHelper databaseHelper;
+    private String strEmailadres;
     private Button btnRegistreren;
     private TextView tvLogin;
 
@@ -23,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
         //Terugknop
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        databaseHelper = new DatabaseHelper(RegisterActivity.this);
+
         btnRegistreren = findViewById(R.id.btnRegistreren);
         btnRegistreren.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String strVoornaam = ((EditText)findViewById(R.id.etRegistrerenVoornaam)).getText().toString();
                 String strAchternaam = ((EditText)findViewById(R.id.etRegistrerenAchternaam)).getText().toString();
                 String strTelefoonnummer = ((EditText)findViewById(R.id.etRegistrerenTelefoonnummer)).getText().toString();
-                String strEmailadres = ((EditText)findViewById(R.id.etRegistrerenEmailadres)).getText().toString();
+                strEmailadres = ((EditText)findViewById(R.id.etRegistrerenEmailadres)).getText().toString();
                 String strWachtwoord = ((EditText)findViewById(R.id.etRegistrerenWachtwoord)).getText().toString();
                 String strHerhaalWachtwoord = ((EditText)findViewById(R.id.etRegistrerenHerhaalWachtwoord)).getText().toString();
 
@@ -39,38 +43,54 @@ public class RegisterActivity extends AppCompatActivity {
                 String strNaam = String.format("%s %s", strVoornaam, strAchternaam);
 
                 //Deze if statement kijkt of alle velden zijn ingevuld
-                if(strVoornaam.equals("") && strAchternaam.equals("") && strTelefoonnummer.equals("") && strEmailadres.equals("") && strWachtwoord.equals("") && strHerhaalWachtwoord.equals(""))
-                    Message.message(getApplicationContext(), "Velden zijn niet ingevuld!");
-                //Deze else if statement kijkt of er een of meerdere velden niet zijn ingevuld
-                else if (strVoornaam.equals("") || strAchternaam.equals("") || strTelefoonnummer.equals("") || strEmailadres.equals("") || strWachtwoord.equals("") || strHerhaalWachtwoord.equals("")) {
-                    Message.message(getApplicationContext(), "Een of meerdere velden zijn niet ingevuld!");
+                String veldNamen = "";
+                int j = 0;
+                if (strVoornaam.equals("")){
+                    veldNamen += "voornaam";
+                    j++;
                 }
-                //Deze else if statement kijkt of de voornaam is ingevuld
-                else if (strVoornaam.equals("")) {
-                    Message.message(getApplicationContext(), "De voornaam is niet ingevuld!");
+
+                if (strAchternaam.equals("")) {
+                    if (!veldNamen.equals("")) {
+                        veldNamen += ", ";
+                    }
+                    veldNamen += "achternaam";
+                    j++;
                 }
-                //Deze else if statement kijkt of de achternaam is ingevuld
-                else if (strAchternaam.equals("")) {
-                    Message.message(getApplicationContext(), "De achternaam is niet ingevuld!");
+
+                if (strTelefoonnummer.equals("")){
+                    veldNamen += "telefoonnummer";
+                    j++;
                 }
-                //Deze else if statement kijkt of het telefoonnummer is ingevuld
-                else if (strTelefoonnummer.equals("")) {
-                    Message.message(getApplicationContext(), "Het telefoonnummer is niet ingevuld!");
+
+                if (strEmailadres.equals("")) {
+                    if (!veldNamen.equals("")) {
+                        veldNamen += ", ";
+                    }
+                    veldNamen += "emailadres";
+                    j++;
                 }
-                //Deze else if statement kijkt of het emailadres is ingevuld
-                else if (strEmailadres.equals("")) {
-                    Message.message(getApplicationContext(), "Het emailadres is niet ingevuld!");
+
+                if (strWachtwoord.equals("")){
+                    veldNamen += "wachtwoord";
+                    j++;
                 }
-                //Deze else if statement kijkt of het wachtwoord is ingevuld
-                else if (strWachtwoord.equals("")) {
-                    Message.message(getApplicationContext(), "Het wachtwoord is niet ingevuld!");
+
+                if (strHerhaalWachtwoord.equals("")) {
+                    if (!veldNamen.equals("")) {
+                        veldNamen += ", ";
+                    }
+                    veldNamen += "herhaal wachtwoord";
+                    j++;
                 }
-                //Deze else if statement kijkt of het herhaal wachtwoord is ingevuld
-                else if (strHerhaalWachtwoord.equals("")) {
-                    Message.message(getApplicationContext(), "Het herhaal wachtwoord is niet ingevuld!");
-                }
-                //Controleert of de wachtwoorden die ingevuld zijn gelijk zijn aan elkaar en als dat waar is wordt er een nieuwe KlantLogin geinstansieerd
-                else if(!strWachtwoord.equals(strHerhaalWachtwoord)) {
+
+                if (j == 1) {
+                    Message.message(getApplicationContext(), String.format("Het veld %s is niet gevuld", veldNamen));
+                } else if (j > 1) {
+                    Message.message(getApplicationContext(), String.format("De velden %s zijn niet gevuld", veldNamen));
+                } else if (databaseHelper.checkEmailadres(strEmailadres)) {
+                    Message.message(getApplicationContext(), "Het emailadres is al in gebruik!");
+                } else if(!strWachtwoord.equals(strHerhaalWachtwoord)) {
                     Message.message(getApplicationContext(), "Wachtwoorden komen niet overeen!");
                 } else {
                     KlantLogin kl = new KlantLogin(strEmailadres, strNaam, strWachtwoord, strTelefoonnummer);
@@ -93,7 +113,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     //Methode die kijkt of het inserten gelukt is of niet
     public void addKlantLogin(KlantLogin kl) {
-        DatabaseHelper databaseHelper = new DatabaseHelper(RegisterActivity.this);
         boolean insertGelukt = databaseHelper.addKlantLogin(kl);
         if(insertGelukt) {
             Message.message(getApplicationContext(), "Registratie succesvol!");

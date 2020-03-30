@@ -8,25 +8,26 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ConfiguratorVelgActivity extends AppCompatActivity {
+    private GeconfigureerdeLightyear lightyear;
+    private ImageView ivConfiguratorLightyear;
     private RadioGroup rgKeuzeVelg;
     private RadioButton rb16Velg, rb17Velg, rb18Velg;
     private Button btnVolgende;
+    private TextView tvPrijs;
     private Velg geselecteerdeVelg;
-    public static final String CONFIGURERENMODEL = "Model";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configurator_velg);
-
-        //Terugknop
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Initialiseert en wijst variabele toe
         BottomNavigationView bnvTopNavigation = findViewById(R.id.bnvTopNavigation);
@@ -58,6 +59,11 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
             }
         });
 
+        lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
+
+        ivConfiguratorLightyear = findViewById(R.id.ivConfiguratorLightyear);
+        ivConfiguratorLightyear.setImageResource(lightyear.getImageResource());
+
         rgKeuzeVelg = findViewById(R.id.rgKeuzeVelg);
         rb16Velg = findViewById(R.id.rb16Velg);
         rb16Velg.setText(Velg.Velgen16.toString());
@@ -65,6 +71,9 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
         rb17Velg.setText(Velg.Velgen17.toString());
         rb18Velg = findViewById(R.id.rb18Velg);
         rb18Velg.setText(Velg.Velgen18.toString());
+
+        tvPrijs = findViewById(R.id.tvPrijs);
+        tvPrijs.setText(String.format("€ %,.2f", lightyear.berekenPrijs()));
 
         btnVolgende = findViewById(R.id.btnVolgende);
         btnVolgende.setOnClickListener(new View.OnClickListener() {
@@ -78,31 +87,15 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
                 else {
                     //One of the radio buttons are selected
                     findRadioButton(checkedID);
-//                    GeconfigureerdeLightyear lightyear = GeconfigureerdeLightyear.construct(geselecteerdeModel);
-//                    int prijs = berekenPrijs();
-//                    lightyear.berekenSubtotaal(prijs);
-
-                    GeconfigureerdeLightyear lightyear = (GeconfigureerdeLightyear) getIntent().getSerializableExtra(ConfiguratorActivity.CONFIGURERENMODEL);
                     if (lightyear != null) {
                         lightyear.setVlg(geselecteerdeVelg);
                         Intent i = new Intent(v.getContext(), ConfiguratorBestellenActivity.class);
-                        i.putExtra(CONFIGURERENMODEL, lightyear);
+                        i.putExtra(ConfiguratorActivity.CONFIGURERENMODEL, lightyear);
                         startActivity(i);
                     }
                 }
             }
         });
-    }
-
-    //Deze methode zorgt ervoor dat als je op de terugknop klikt, je naar de juiste activity gaat
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     //Deze methode kijkt welke radiobutton is geselecteerd en geeft de juiste waarde mee
@@ -117,6 +110,25 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
             case R.id.rb18Velg:
                 geselecteerdeVelg = Velg.Velgen18;
                 break;
+        }
+    }
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+        if(checked) {
+            Velg vlg = null;
+            switch(view.getId()) {
+                case R.id.rb16Velg:
+                    vlg = Velg.Velgen16;
+                    break;
+                case R.id.rb17Velg:
+                    vlg = Velg.Velgen17;
+                    break;
+                case R.id.rb18Velg:
+                    vlg = Velg.Velgen18;
+                    break;
+            }
+            tvPrijs.setText(String.format("€ %,.2f", lightyear.berekenPrijs() + vlg.getPrijs()));
         }
     }
 }

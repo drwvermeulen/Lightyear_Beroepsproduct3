@@ -18,7 +18,7 @@ public class GeconfigureerdeLightyear implements Serializable {
                 geconfigureerdeLightyear = new GeconfigureerdeLightyear(model);
                 break;
 
-            case LightyearOnePioneer:
+            case LightyearPioneer:
                 geconfigureerdeLightyear = new GeconfigureerdeLightyearPioneerEdition(model);
                 break;
         }
@@ -27,6 +27,27 @@ public class GeconfigureerdeLightyear implements Serializable {
 
     public GeconfigureerdeLightyear(Model model) {
         this.mdl = model;
+    }
+
+    public int getImageResource() {
+        int imageResource = R.drawable.lightyearone_wit;
+        if(klr != null) {
+            switch (klr) {
+                case KleurZwart:
+                    imageResource = R.drawable.lightyearone_zwart;
+                    break;
+                case KleurWit:
+                    imageResource = R.drawable.lightyearone_wit;
+                    break;
+                case KleurRood:
+                    imageResource = R.drawable.lightyearone_rood;
+                    break;
+                case KleurBlauw:
+                    imageResource = R.drawable.lightyearone_blauw;
+                    break;
+            }
+        }
+        return imageResource;
     }
 
     public Integer getCnfgrtnmmr() {
@@ -67,5 +88,29 @@ public class GeconfigureerdeLightyear implements Serializable {
 
     public void setVlg(Velg vlg) {
         this.vlg = vlg;
+    }
+
+    public String getFormattedConfig() {
+        return String.format("CONFIG%05d", cnfgrtnmmr);
+    }
+
+    public Double berekenPrijs() {
+        Double prijs = 0.00;
+
+        prijs += mdl.getPrijs();
+
+        if (klr != null) {
+            prijs += klr.getPrijs();
+        }
+
+        if (lk != null) {
+            prijs += lk.getPrijs();
+        }
+
+        if (vlg != null) {
+            prijs += vlg.getPrijs();
+        }
+
+        return prijs;
     }
 }

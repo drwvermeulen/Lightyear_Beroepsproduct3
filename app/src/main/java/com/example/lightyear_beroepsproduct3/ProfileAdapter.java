@@ -1,9 +1,12 @@
 package com.example.lightyear_beroepsproduct3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,15 +16,11 @@ import java.util.ArrayList;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder> {
     private Context context;
-    private ArrayList configuratienummer, model, kleur, lak, velg;
+    private ArrayList<GeconfigureerdeLightyear> geconfigureerdeLightyearList;
 
-    public ProfileAdapter(Context context, ArrayList configuratienummer, ArrayList model, ArrayList kleur, ArrayList lak, ArrayList velg) {
+    public ProfileAdapter(Context context, ArrayList<GeconfigureerdeLightyear> geconfigureerdeLightyearList) {
         this.context = context;
-        this.configuratienummer = configuratienummer;
-        this.model = model;
-        this.kleur = kleur;
-        this.lak = lak;
-        this.velg = velg;
+        this.geconfigureerdeLightyearList = geconfigureerdeLightyearList;
     }
 
     @NonNull
@@ -33,34 +32,36 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvPRConfiguratienummer.setText(String.valueOf(configuratienummer.get(position)));
-        holder.tvPRModel.setText(String.valueOf(model.get(position)));
-        holder.tvPRKleur.setText(String.valueOf(kleur.get(position)));
-        holder.tvPRLak.setText(String.valueOf(lak.get(position)));
-        holder.tvPRVelg.setText(String.valueOf(velg.get(position)));
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        holder.ivProfileLightyear.setImageResource(geconfigureerdeLightyearList.get(position).getImageResource());
+        holder.tvProfileConfiguratienummer.setText(geconfigureerdeLightyearList.get(position).getFormattedConfig());
+        holder.tvProfileModel.setText(String.valueOf(geconfigureerdeLightyearList.get(position).getMdl()));
+        holder.profileLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ProfileBestellingActivity.class);
+                i.putExtra(ConfiguratorActivity.CONFIGURERENMODEL, geconfigureerdeLightyearList.get(position));
+                context.startActivity(i);
+            }
+        });
     }
-
-//    @Override
-//    public int getItemCount() {
-//        return configuratienummer.size();
-//    }
 
     @Override
     public int getItemCount() {
-        return configuratienummer.size();
+        return geconfigureerdeLightyearList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvPRConfiguratienummer, tvPRModel, tvPRKleur, tvPRLak, tvPRVelg;
+        ImageView ivProfileLightyear;
+        TextView tvProfileConfiguratienummer, tvProfileModel;
+        LinearLayout profileLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvPRConfiguratienummer = itemView.findViewById(R.id.tvPRConfiguratienummer);
-            tvPRModel = itemView.findViewById(R.id.tvPRModel);
-            tvPRKleur = itemView.findViewById(R.id.tvPRKleur);
-            tvPRLak = itemView.findViewById(R.id.tvPRLak);
-            tvPRVelg = itemView.findViewById(R.id.tvPRVelg);
+            ivProfileLightyear = itemView.findViewById(R.id.ivProfileLightyear);
+            tvProfileConfiguratienummer = itemView.findViewById(R.id.tvProfileConfiguratienummer);
+            tvProfileModel = itemView.findViewById(R.id.tvProfileModel);
+            profileLayout = itemView.findViewById(R.id.profileLayout);
         }
     }
 }

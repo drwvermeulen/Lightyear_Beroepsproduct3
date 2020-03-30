@@ -3,8 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/profileLayout">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -16,59 +18,37 @@
             android:layout_height="wrap_content"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/tvPRConfiguratienummer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"
-                android:textColor="#000000"
-                android:textSize="30sp"
-                android:textStyle="bold"
+            <ImageView
+                android:id="@+id/ivProfileLightyear"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:srcCompat="@mipmap/ic_launcher" />
 
             <TextView
-                android:id="@+id/tvPRModel"
+                android:id="@+id/tvProfileConfiguratienummer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Model"
+                android:layout_marginTop="5dp"
+                android:text="1"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/ivProfileLightyear"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvProfileModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Model"
                 android:textColor="#000000"
-                app:layout_constraintStart_toEndOf="@+id/tvPRConfiguratienummer"
-                app:layout_constraintTop_toTopOf="@+id/tvPRConfiguratienummer" />
-
-            <TextView
-                android:id="@+id/tvPRKleur"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kleur"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/tvPRModel"
-                app:layout_constraintTop_toBottomOf="@+id/tvPRModel" />
-
-            <TextView
-                android:id="@+id/tvPRLak"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="Lak"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/tvPRKleur"
-                app:layout_constraintTop_toBottomOf="@+id/tvPRModel" />
-
-            <TextView
-                android:id="@+id/tvPRVelg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="Velg"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/tvPRLak"
-                app:layout_constraintTop_toBottomOf="@+id/tvPRModel" />
+                app:layout_constraintStart_toStartOf="@+id/tvProfileConfiguratienummer"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfileConfiguratienummer" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
