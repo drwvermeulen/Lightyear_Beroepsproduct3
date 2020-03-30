@@ -33,9 +33,17 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        GeconfigureerdeLightyear geconfigureerdeLightyear = geconfigureerdeLightyearList.get(position);
         holder.ivProfileLightyear.setImageResource(geconfigureerdeLightyearList.get(position).getImageResource());
         holder.tvProfileConfiguratienummer.setText(geconfigureerdeLightyearList.get(position).getFormattedConfig());
         holder.tvProfileModel.setText(String.valueOf(geconfigureerdeLightyearList.get(position).getMdl()));
+        if(geconfigureerdeLightyear instanceof GeconfigureerdeLightyearPioneerEdition) {
+            GeconfigureerdeLightyearPioneerEdition glpe = (GeconfigureerdeLightyearPioneerEdition) geconfigureerdeLightyear;
+            holder.tvProfilePioneerEdition.setText(String.format("- %s", glpe.getPnrdtn()));
+        } else {
+            holder.tvProfilePioneerEdition.setVisibility(View.INVISIBLE);
+            holder.ivProfilePioneerEdition.setVisibility(View.INVISIBLE);
+        }
         holder.profileLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,15 +60,17 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivProfileLightyear;
-        TextView tvProfileConfiguratienummer, tvProfileModel;
+        ImageView ivProfileLightyear, ivProfilePioneerEdition;
+        TextView tvProfileConfiguratienummer, tvProfileModel, tvProfilePioneerEdition;
         LinearLayout profileLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileLightyear = itemView.findViewById(R.id.ivProfileLightyear);
+            ivProfilePioneerEdition = itemView.findViewById(R.id.ivProfilePioneerEdition);
             tvProfileConfiguratienummer = itemView.findViewById(R.id.tvProfileConfiguratienummer);
             tvProfileModel = itemView.findViewById(R.id.tvProfileModel);
+            tvProfilePioneerEdition = itemView.findViewById(R.id.tvProfilePioneerEdition);
             profileLayout = itemView.findViewById(R.id.profileLayout);
         }
     }

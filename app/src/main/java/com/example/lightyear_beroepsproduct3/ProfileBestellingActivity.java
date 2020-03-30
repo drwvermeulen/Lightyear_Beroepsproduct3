@@ -29,7 +29,7 @@ public class ProfileBestellingActivity extends AppCompatActivity {
         tvProfileKleur = findViewById(R.id.tvProfileKleur);
         tvProfileLak = findViewById(R.id.tvProfileLak);
         tvProfileVelgen = findViewById(R.id.tvProfileVelgen);
-        tvProfilePioneerEdition = findViewById(R.id.tvProfilePioneerEdition);
+//        tvProfilePioneerEdition = findViewById(R.id.tvProfilePioneerEdition);
 
         getData();
         setData();
@@ -46,15 +46,15 @@ public class ProfileBestellingActivity extends AppCompatActivity {
     private void setData() {
         ivProfileLightyear.setImageResource(geconfigureerdeLightyear.getImageResource());
         tvProfileConfiguratienummer.setText(geconfigureerdeLightyear.getFormattedConfig());
-        tvProfileModel.setText(geconfigureerdeLightyear.getMdl().toString());
+//        tvProfileModel.setText(geconfigureerdeLightyear.getMdl().toString());
         tvProfileKleur.setText(geconfigureerdeLightyear.getKlr().toString());
         tvProfileLak.setText(geconfigureerdeLightyear.getLk().toString());
         tvProfileVelgen.setText(geconfigureerdeLightyear.getVlg().toString());
         if(geconfigureerdeLightyear instanceof GeconfigureerdeLightyearPioneerEdition) {
             GeconfigureerdeLightyearPioneerEdition glpe = (GeconfigureerdeLightyearPioneerEdition) geconfigureerdeLightyear;
-            tvProfilePioneerEdition.setText(glpe.getPnrdtn().toString());
+            tvProfileModel.setText(String.format("%s - %s", geconfigureerdeLightyear.getMdl(), glpe.getPnrdtn()));
         } else {
-            tvProfilePioneerEdition.setVisibility(View.INVISIBLE);
+//            tvProfilePioneerEdition.setVisibility(View.INVISIBLE);
             ivProfilePioneerEdition.setVisibility(View.INVISIBLE);
         }
     }
