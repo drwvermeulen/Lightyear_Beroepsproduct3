@@ -50,21 +50,21 @@
             android:id="@+id/rbUnilak"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lak \nPrijs"
+            android:text="Lak"
             android:onClick="onRadioButtonClicked" />
 
         <RadioButton
             android:id="@+id/rbMetalliclak"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lak \nPrijs"
+            android:text="Lak"
             android:onClick="onRadioButtonClicked" />
 
         <RadioButton
             android:id="@+id/rbMattelak"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lak \nPrijs"
+            android:text="Lak"
             android:onClick="onRadioButtonClicked" />
 
     </RadioGroup>

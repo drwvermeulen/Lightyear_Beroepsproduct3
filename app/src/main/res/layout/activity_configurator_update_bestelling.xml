@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ConfiguratorUpdateBestellingActivity">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnvTopNavigationUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:itemBackground="@color/colorWhite"
+        app:itemTextColor="@drawable/selectortp"
+        app:itemIconTint="@drawable/selectortp"
+        app:menu="@menu/menu_navigation_top_update" />
+
+    <ImageView
+        android:id="@+id/ivConfiguratorUpdateLightyear"
+        android:paddingTop="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/lightyearone_wit" />
+
+    <TextView
+        android:id="@+id/tvConfiguratorUpdateBestelling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:layout_centerHorizontal="true"
+        android:text="Overzicht van uw bestelling:"
+        android:textSize="20dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvUpdateGeconfigureerdeMdl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="310dp"
+        android:layout_centerHorizontal="true"
+        android:text="Model"
+        android:textSize="16dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvUpdateGeconfigureerdeKlr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="340dp"
+        android:layout_centerHorizontal="true"
+        android:text="Klr"
+        android:textSize="16dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvUpdateGeconfigureerdeLk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="370dp"
+        android:layout_centerHorizontal="true"
+        android:text="Lk"
+        android:textSize="16dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvUpdateGeconfigureerdeVlg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:layout_centerHorizontal="true"
+        android:text="Vlg"
+        android:textSize="16dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/tvUpdateGeconfigureerdePnrdtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="430dp"
+        android:layout_centerHorizontal="true"
+        android:text="Pnrdtn"
+        android:textSize="16dp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/tvUpdatePrijs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prijs"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="90dp" />
+
+    <Button
+        android:id="@+id/btnUpdateBestelling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Bestelling"
+        android:width="175dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp" />
+
+</RelativeLayout>

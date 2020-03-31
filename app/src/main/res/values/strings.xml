@@ -2,6 +2,7 @@
     <string name="app_name">Lightyear</string>
     <string name="btnConfigureren">Configureren</string>
     <string name="btnVolgende">Volgende</string>
+    <string name="btnUpdateVolgende">Volgende</string>
     <string name="tvHoofdtekst">Lightyear is more than an ordinary car manufacturer. We are a tech company on a mission: to bring about clean mobility for everyone, everywhere.</string>
     <string name="tvSubTekst">Cars currently contribute to 12% of European greenhouse gases emissions, and without radical change to the way we move it is a number set to increase drastically. While we need to revolutionise the way we travel, countries are struggling to build the necessary infrastructure to support the transition to electric vehicles.</string>
     <string name="tvSubtekst2">So what if we could leapfrog the grid and create a car charged by the sun? A car able to drive unprecedented distances without all the charging stops. This is Lightyear One, the world’s first long range solar car. Charge with the sun. Extend your range. Be sustainable.</string>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/configuratorUpdateKleur"
+        android:title="1. Kleur"
+        android:icon="@drawable/one" />
+    <item
+        android:id="@+id/configuratorUpdateLak"
+        android:title="2. Lak"
+        android:icon="@drawable/two" />
+    <item
+        android:id="@+id/configuratorUpdateVelg"
+        android:title="3. Velgen"
+        android:icon="@drawable/three" />
+    <item
+        android:id="@+id/configuratorUpdateBestelling"
+        android:title="4. Update"
+        android:icon="@drawable/four" />
+</menu>

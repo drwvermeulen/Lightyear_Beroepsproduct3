@@ -90,18 +90,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfileLak" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/tvProfilePioneerEdition"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="15dp"-->
-<!--        android:text="PioneerEdition"-->
-<!--        android:textColor="#000000"-->
-<!--        android:textSize="14sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tvProfileVelgen" />-->
-
     <Button
         android:id="@+id/btnAanpassen"
         android:layout_width="wrap_content"

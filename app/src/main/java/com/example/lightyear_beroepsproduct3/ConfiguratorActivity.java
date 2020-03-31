@@ -17,7 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class ConfiguratorActivity extends AppCompatActivity {
     private RadioGroup rgKeuzeModel;
     private RadioButton rbLightyearOne, rbLightyearOnePioneer;
-    private TextView tvPrijsModel;
+    private TextView tvPrijs;
     private Button btnConfigureren;
     private Model geselecteerdeModel;
     public static final String CONFIGURERENMODEL = "Model";
@@ -33,7 +33,7 @@ public class ConfiguratorActivity extends AppCompatActivity {
         rbLightyearOnePioneer = findViewById(R.id.rbLightyearOnePioneer);
         rbLightyearOnePioneer.setText(Model.LightyearPioneer.toString());
 
-        tvPrijsModel = findViewById(R.id.tvPrijsModel);
+        tvPrijs = findViewById(R.id.tvPrijs);
 
         btnConfigureren = findViewById(R.id.btnConfigureren);
         btnConfigureren.setOnClickListener(new View.OnClickListener() {
@@ -43,8 +43,7 @@ public class ConfiguratorActivity extends AppCompatActivity {
                 if(checkedID == -1) {
                     //No radio buttons are checked
                     Message.message(getApplicationContext(), "Selecteer iets!");
-                }
-                else {
+                } else {
                     //One of the radio buttons are selected
                     findRadioButton(checkedID);
                     GeconfigureerdeLightyear lightyear = GeconfigureerdeLightyear.construct(geselecteerdeModel);
@@ -106,7 +105,7 @@ public class ConfiguratorActivity extends AppCompatActivity {
                     mdl = Model.LightyearPioneer;
                     break;
             }
-            tvPrijsModel.setText(String.format("€ %,.2f", mdl.getPrijs()));
+            tvPrijs.setText(String.format("€ %,.2f", mdl.getPrijs()));
         }
     }
 }

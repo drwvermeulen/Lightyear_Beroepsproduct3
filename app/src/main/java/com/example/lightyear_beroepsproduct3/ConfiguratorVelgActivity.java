@@ -66,10 +66,11 @@ public class ConfiguratorVelgActivity extends AppCompatActivity {
 
         rgKeuzeVelg = findViewById(R.id.rgKeuzeVelg);
         rb16Velg = findViewById(R.id.rb16Velg);
-        rb16Velg.setText(Velg.Velgen16.toString());
         rb17Velg = findViewById(R.id.rb17Velg);
-        rb17Velg.setText(Velg.Velgen17.toString());
         rb18Velg = findViewById(R.id.rb18Velg);
+
+        rb16Velg.setText(Velg.Velgen16.toString());
+        rb17Velg.setText(Velg.Velgen17.toString());
         rb18Velg.setText(Velg.Velgen18.toString());
 
         tvPrijs = findViewById(R.id.tvPrijs);

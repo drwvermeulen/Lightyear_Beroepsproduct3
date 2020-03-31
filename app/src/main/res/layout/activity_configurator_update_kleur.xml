@@ -6,20 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".ConfiguratorKleurActivity">
+    tools:context=".ConfiguratorUpdateKleurActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnvTopNavigation"
+        android:id="@+id/bnvTopNavigationUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         app:itemBackground="@color/colorWhite"
         app:itemTextColor="@drawable/selectortp"
         app:itemIconTint="@drawable/selectortp"
-        app:menu="@menu/menu_navigation_top" />
+        app:menu="@menu/menu_navigation_top_update" />
 
     <ImageView
-        android:id="@+id/ivConfiguratorLightyear"
+        android:id="@+id/ivConfiguratorUpdateLightyear"
         android:paddingTop="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -30,7 +30,7 @@
         app:srcCompat="@drawable/lightyearone_wit" />
 
     <TextView
-        android:id="@+id/tvConfiguratorKleur"
+        android:id="@+id/tvConfiguratorUpdateKleur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
@@ -40,35 +40,35 @@
         android:textSize="20dp" />
 
     <RadioGroup
-        android:id="@+id/rgKeuzeKleur"
+        android:id="@+id/rgUpdateKeuzeKleur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
         android:layout_centerHorizontal="true" >
 
         <RadioButton
-            android:id="@+id/rbKleurZwart"
+            android:id="@+id/rbUpdateKleurZwart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kleur"
             android:onClick="onRadioButtonClicked" />
 
         <RadioButton
-            android:id="@+id/rbKleurWit"
+            android:id="@+id/rbUpdateKleurWit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kleur"
             android:onClick="onRadioButtonClicked" />
 
         <RadioButton
-            android:id="@+id/rbKleurRood"
+            android:id="@+id/rbUpdateKleurRood"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kleur"
             android:onClick="onRadioButtonClicked" />
 
         <RadioButton
-            android:id="@+id/rbKleurBlauw"
+            android:id="@+id/rbUpdateKleurBlauw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kleur"
@@ -77,7 +77,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/tvPrijs"
+        android:id="@+id/tvUpdatePrijs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Prijs"
@@ -88,7 +88,7 @@
         android:layout_marginBottom="75dp" />
 
     <Button
-        android:id="@+id/btnVolgende"
+        android:id="@+id/btnUpdateVolgende"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnVolgende"

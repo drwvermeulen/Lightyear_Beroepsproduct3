@@ -138,6 +138,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //Deze methode update een bestaande geconfigureerdelight
+    public Boolean updateGeconfigureerdeLightyear(GeconfigureerdeLightyear cl, String cnfgrtnmmr, String mdl) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_EMAILADRES_KLANTLOGIN, strEmailadres);
+        values.put(COL_MODEL, mdl);
+        values.put(COL_KLEUR, cl.getKlr().toString());
+        values.put(COL_LAK, cl.getLk().toString());
+        values.put(COL_VELG, cl.getVlg().toString());
+        long result = db.update(TABLE_GECONFIGUREERDELIGHTYEARS, values, "cnfgrtnmmr = ?", new String[]{cnfgrtnmmr});
+        db.close();
+        if(result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     //Methode die kijkt of de gebruikersnaam van de klant al bestaat
     public Boolean checkEmailadres(String emailadres) {
         SQLiteDatabase db = this.getReadableDatabase();

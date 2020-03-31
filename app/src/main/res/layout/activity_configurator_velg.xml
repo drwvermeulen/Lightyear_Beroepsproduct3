@@ -50,21 +50,21 @@
             android:id="@+id/rb16Velg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Velg \nPrijs"
+            android:text="Velg"
             android:onClick="onRadioButtonClicked" />
 
         <RadioButton
             android:id="@+id/rb17Velg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Velg \nPrijs"
+            android:text="Velg"
             android:onClick="onRadioButtonClicked" />
 
         <RadioButton
             android:id="@+id/rb18Velg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Velg \nPrijs"
+            android:text="Velg"
             android:onClick="onRadioButtonClicked" />
 
     </RadioGroup>

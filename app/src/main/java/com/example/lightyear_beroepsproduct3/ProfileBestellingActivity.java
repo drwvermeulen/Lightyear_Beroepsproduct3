@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,8 +16,10 @@ import java.util.ArrayList;
 
 public class ProfileBestellingActivity extends AppCompatActivity {
     private ImageView ivProfileLightyear, ivProfilePioneerEdition;
-    private TextView tvProfileConfiguratienummer, tvProfileModel, tvProfileKleur, tvProfileLak, tvProfileVelgen, tvProfilePioneerEdition;
+    private TextView tvProfileConfiguratienummer, tvProfileModel, tvProfileKleur, tvProfileLak, tvProfileVelgen;
     private GeconfigureerdeLightyear geconfigureerdeLightyear;
+    public static final String UPDATELIGHTYEARCONFIGURATIENUMMER = "cnfgrtnmmr";
+    public static final String UPDATELIGHTYEARMODEL = "mdl";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +33,19 @@ public class ProfileBestellingActivity extends AppCompatActivity {
         tvProfileKleur = findViewById(R.id.tvProfileKleur);
         tvProfileLak = findViewById(R.id.tvProfileLak);
         tvProfileVelgen = findViewById(R.id.tvProfileVelgen);
-//        tvProfilePioneerEdition = findViewById(R.id.tvProfilePioneerEdition);
 
         getData();
         setData();
+
+        Button btnAanpassen = findViewById(R.id.btnAanpassen);
+        btnAanpassen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ConfiguratorUpdateKleurActivity.class);
+                i.putExtra(UPDATELIGHTYEARMODEL, geconfigureerdeLightyear);
+                startActivity(i);
+            }
+        });
     }
 
     private void getData() {
@@ -46,7 +59,6 @@ public class ProfileBestellingActivity extends AppCompatActivity {
     private void setData() {
         ivProfileLightyear.setImageResource(geconfigureerdeLightyear.getImageResource());
         tvProfileConfiguratienummer.setText(geconfigureerdeLightyear.getFormattedConfig());
-//        tvProfileModel.setText(geconfigureerdeLightyear.getMdl().toString());
         tvProfileKleur.setText(geconfigureerdeLightyear.getKlr().toString());
         tvProfileLak.setText(geconfigureerdeLightyear.getLk().toString());
         tvProfileVelgen.setText(geconfigureerdeLightyear.getVlg().toString());
@@ -54,7 +66,6 @@ public class ProfileBestellingActivity extends AppCompatActivity {
             GeconfigureerdeLightyearPioneerEdition glpe = (GeconfigureerdeLightyearPioneerEdition) geconfigureerdeLightyear;
             tvProfileModel.setText(String.format("%s - %s", geconfigureerdeLightyear.getMdl(), glpe.getPnrdtn()));
         } else {
-//            tvProfilePioneerEdition.setVisibility(View.INVISIBLE);
             ivProfilePioneerEdition.setVisibility(View.INVISIBLE);
         }
     }

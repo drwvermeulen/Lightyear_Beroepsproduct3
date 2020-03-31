@@ -66,10 +66,11 @@ public class ConfiguratorLakActivity extends AppCompatActivity {
 
         rgKeuzeLak = findViewById(R.id.rgKeuzeLak);
         rbUnilak = findViewById(R.id.rbUnilak);
-        rbUnilak.setText(Lak.Unilak.toString());
         rbMetalliclak = findViewById(R.id.rbMetalliclak);
-        rbMetalliclak.setText(Lak.Metalliclak.toString());
         rbMattelak = findViewById(R.id.rbMattelak);
+
+        rbUnilak.setText(Lak.Unilak.toString());
+        rbMetalliclak.setText(Lak.Metalliclak.toString());
         rbMattelak.setText(Lak.Mattelak.toString());
 
         tvPrijs = findViewById(R.id.tvPrijs);

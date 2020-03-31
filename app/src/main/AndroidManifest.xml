@@ -9,30 +9,44 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileBestellingActivity"
-            android:parentActivityName=".ProfileActivity"
-            android:label="Bestelling Details"></activity>
-        <activity android:name=".ConfiguratorBestellenActivity"
-            android:parentActivityName=".ConfiguratorVelgActivity"
-            android:label="Configurator - Bestelling"/>
-        <activity android:name=".ConfiguratorVelgActivity"
-            android:parentActivityName=".ConfiguratorLakActivity"
-            android:label="Configurator - Velg"/>
-        <activity android:name=".ConfiguratorLakActivity"
-            android:parentActivityName=".ConfiguratorKleurActivity"
-            android:label="Configurator - Lak"/>
-        <activity android:name=".ConfiguratorKleurActivity"
-            android:parentActivityName=".ConfiguratorActivity"
-            android:label="Configurator - Kleur"/>
-        <activity android:name=".RegisterActivity"
-            android:label="Registeren"/>
-        <activity android:name=".MainActivity"
-            android:label="Lightyear"/>
-        <activity android:name=".ProfileActivity"
-            android:label="Profiel"/>
-        <activity android:name=".ConfiguratorActivity"
-            android:label="Configurator - Model"/>
-        <activity android:name=".LoginActivity"
+        <activity android:name=".ConfiguratorUpdateBestellingActivity"></activity>
+        <activity android:name=".ConfiguratorUpdateVelgActivity" />
+        <activity android:name=".ConfiguratorUpdateLakActivity" />
+        <activity android:name=".ConfiguratorUpdateKleurActivity" />
+        <activity
+            android:name=".ProfileBestellingActivity"
+            android:label="Bestelling Details"
+            android:parentActivityName=".ProfileActivity" />
+        <activity
+            android:name=".ConfiguratorBestellenActivity"
+            android:label="Configurator - Bestelling"
+            android:parentActivityName=".ConfiguratorVelgActivity" />
+        <activity
+            android:name=".ConfiguratorVelgActivity"
+            android:label="Configurator - Velg"
+            android:parentActivityName=".ConfiguratorLakActivity" />
+        <activity
+            android:name=".ConfiguratorLakActivity"
+            android:label="Configurator - Lak"
+            android:parentActivityName=".ConfiguratorKleurActivity" />
+        <activity
+            android:name=".ConfiguratorKleurActivity"
+            android:label="Configurator - Kleur"
+            android:parentActivityName=".ConfiguratorActivity" />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="Registeren" />
+        <activity
+            android:name=".MainActivity"
+            android:label="Lightyear" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="Profiel" />
+        <activity
+            android:name=".ConfiguratorActivity"
+            android:label="Configurator - Model" />
+        <activity
+            android:name=".LoginActivity"
             android:label="Lightyear">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

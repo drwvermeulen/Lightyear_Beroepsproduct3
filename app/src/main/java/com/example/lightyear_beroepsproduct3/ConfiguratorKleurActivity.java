@@ -65,12 +65,13 @@ public class ConfiguratorKleurActivity extends AppCompatActivity {
 
         rgKeuzeKleur = findViewById(R.id.rgKeuzeKleur);
         rbKleurZwart = findViewById(R.id.rbKleurZwart);
-        rbKleurZwart.setText(Kleur.KleurZwart.toString());
         rbKleurWit = findViewById(R.id.rbKleurWit);
-        rbKleurWit.setText(Kleur.KleurWit.toString());
         rbKleurRood = findViewById(R.id.rbKleurRood);
-        rbKleurRood.setText(Kleur.KleurRood.toString());
         rbKleurBlauw = findViewById(R.id.rbKleurBlauw);
+
+        rbKleurZwart.setText(Kleur.KleurZwart.toString());
+        rbKleurWit.setText(Kleur.KleurWit.toString());
+        rbKleurRood.setText(Kleur.KleurRood.toString());
         rbKleurBlauw.setText(Kleur.KleurBlauw.toString());
 
         tvPrijs = findViewById(R.id.tvPrijs);
