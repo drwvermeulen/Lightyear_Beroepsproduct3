@@ -22,9 +22,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //Terugknop
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         databaseHelper = new DatabaseHelper(RegisterActivity.this);
 
         btnRegistreren = findViewById(R.id.btnRegistreren);
@@ -38,9 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
                 strEmailadres = ((EditText)findViewById(R.id.etRegistrerenEmailadres)).getText().toString();
                 String strWachtwoord = ((EditText)findViewById(R.id.etRegistrerenWachtwoord)).getText().toString();
                 String strHerhaalWachtwoord = ((EditText)findViewById(R.id.etRegistrerenHerhaalWachtwoord)).getText().toString();
-
-                //Deze string wordt juist geformateerd voor de KlantLogin constructor
-                String strNaam = String.format("%s %s", strVoornaam, strAchternaam);
 
                 //Deze if statement kijkt of alle velden zijn ingevuld
                 String veldNamen = "";
@@ -93,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else if(!strWachtwoord.equals(strHerhaalWachtwoord)) {
                     Message.message(getApplicationContext(), "Wachtwoorden komen niet overeen!");
                 } else {
-                    KlantLogin kl = new KlantLogin(strEmailadres, strNaam, strWachtwoord, strTelefoonnummer);
+                    KlantLogin kl = new KlantLogin(strEmailadres, strVoornaam, strAchternaam, strWachtwoord, strTelefoonnummer);
                     addKlantLogin(kl);
                     Intent i = new Intent(v.getContext(), LoginActivity.class);
                     startActivity(i);
@@ -119,16 +113,5 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             Message.message(getApplicationContext(), "Oeps, er is iets fout gegaan!");
         }
-    }
-
-    //Deze methode zorgt ervoor dat als je op de terugknop klikt, je naar de juiste activity gaat
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

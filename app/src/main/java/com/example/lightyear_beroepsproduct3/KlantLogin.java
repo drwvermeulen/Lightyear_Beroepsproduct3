@@ -1,11 +1,12 @@
 package com.example.lightyear_beroepsproduct3;
 
 public class KlantLogin {
-    private String mldrs, nm, wchtwrd, tlfnnmmr;
+    private String mldrs, vrnm, chtrnm, wchtwrd, tlfnnmmr;
 
-    public KlantLogin(String emailadres, String naam, String wachtwoord, String telefoonnummer) {
+    public KlantLogin(String emailadres, String voornaam, String achternaam, String wachtwoord, String telefoonnummer) {
         this.mldrs = emailadres;
-        this.nm = naam;
+        this.vrnm = voornaam;
+        this.chtrnm = achternaam;
         this.wchtwrd = wachtwoord;
         this.tlfnnmmr = telefoonnummer;
     }
@@ -18,12 +19,20 @@ public class KlantLogin {
         this.mldrs = mldrs;
     }
 
-    public String getNm() {
-        return nm;
+    public String getVrnm() {
+        return vrnm;
     }
 
-    public void setNm(String nm) {
-        this.nm = nm;
+    public void setVrnm(String vrnm) {
+        this.vrnm = vrnm;
+    }
+
+    public String getChtrnm() {
+        return chtrnm;
+    }
+
+    public void setChtrnm(String chtrnm) {
+        this.chtrnm = chtrnm;
     }
 
     public String getWchtwrd() {

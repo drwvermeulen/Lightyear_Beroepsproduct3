@@ -9,10 +9,26 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ConfiguratorUpdateBestellingActivity"></activity>
-        <activity android:name=".ConfiguratorUpdateVelgActivity" />
-        <activity android:name=".ConfiguratorUpdateLakActivity" />
-        <activity android:name=".ConfiguratorUpdateKleurActivity" />
+        <activity
+            android:name=".ProfielBewerkenActivity"
+            android:label="Profiel Bewerken"
+            android:parentActivityName=".ProfileActivity"></activity>
+        <activity
+            android:name=".ConfiguratorUpdateBestellingActivity"
+            android:label="Configurator - Update Bestelling"
+            android:parentActivityName=".ConfiguratorUpdateVelgActivity"/>
+        <activity
+            android:name=".ConfiguratorUpdateVelgActivity"
+            android:label="Configurator - Update Velg"
+            android:parentActivityName=".ConfiguratorUpdateLakActivity"/>
+        <activity
+            android:name=".ConfiguratorUpdateLakActivity"
+            android:label="Configurator - Update Lak"
+            android:parentActivityName=".ConfiguratorUpdateKleurActivity"/>
+        <activity
+            android:name=".ConfiguratorUpdateKleurActivity"
+            android:label="Configurator - Update Kleur"
+            android:parentActivityName=".ProfileBestellingActivity"/>
         <activity
             android:name=".ProfileBestellingActivity"
             android:label="Bestelling Details"
@@ -35,7 +51,8 @@
             android:parentActivityName=".ConfiguratorActivity" />
         <activity
             android:name=".RegisterActivity"
-            android:label="Registeren" />
+            android:label="Registeren"
+            android:parentActivityName=".LoginActivity"/>
         <activity
             android:name=".MainActivity"
             android:label="Lightyear" />

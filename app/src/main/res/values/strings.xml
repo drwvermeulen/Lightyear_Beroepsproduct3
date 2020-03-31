@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Lightyear</string>
+    <string name="profiel_bewerken">Profiel Bewerken</string>
+    <string name="loguit">Uitloggen</string>
     <string name="btnConfigureren">Configureren</string>
     <string name="btnVolgende">Volgende</string>
     <string name="btnUpdateVolgende">Volgende</string>

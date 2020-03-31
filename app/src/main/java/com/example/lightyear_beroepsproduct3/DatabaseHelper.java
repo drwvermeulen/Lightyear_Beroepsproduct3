@@ -8,11 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-import static com.example.lightyear_beroepsproduct3.LoginActivity.strEmailadres;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
     //Klasse variabelen
-    private String klantnaam;
     private ArrayList<GeconfigureerdeLightyear> geconfigureerdeLightyearList;
     public static final String PIONEERNUMMERREEKSID = "PioneerEdition";
 
@@ -23,7 +20,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_KLANTLOGINS = "KlantLogins";
     private static final String COL_EMALADRES = "mldrs";
     private static final String COL_WACHTWOORD = "wchtwrd";
-    private static final String COL_NAAM = "nm";
+    private static final String COL_VOORNAAM = "vrnm";
+    private static final String COL_ACHTERNAAM = "chtrnm";
     private static final String COL_TELEFOONNUMMER = "tlfnnmmr";
     private static final String CONSTRAINT_PK_MLDRS = "pk_mldrs";
 
@@ -31,7 +29,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String strCreateTableKlantLogin ="CREATE TABLE " + TABLE_KLANTLOGINS + "("
             + COL_EMALADRES + " TEXT NOT NULL, "
             + COL_WACHTWOORD + " TEXT NOT NULL, "
-            + COL_NAAM + " TEXT NOT NULL, "
+            + COL_VOORNAAM + " TEXT NOT NULL, "
+            + COL_ACHTERNAAM + " TEXT NOT NULL, "
             + COL_TELEFOONNUMMER + " TEXT NOT NULL,"
             + "CONSTRAINT " + CONSTRAINT_PK_MLDRS + " PRIMARY KEY (" + COL_EMALADRES + "))";
 
@@ -105,9 +104,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COL_EMALADRES, kl.getMldrs());
         values.put(COL_WACHTWOORD, kl.getWchtwrd());
-        values.put(COL_NAAM, kl.getNm());
+        values.put(COL_VOORNAAM, kl.getVrnm());
+        values.put(COL_ACHTERNAAM, kl.getChtrnm());
         values.put(COL_TELEFOONNUMMER, kl.getTlfnnmmr());
         long result = db.insert(TABLE_KLANTLOGINS, null, values);
+        db.close();
+        if(result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //Deze methode update een bestaande klant
+    public Boolean updateKlantLogin(String emailadres, String wachtwoord, String voornaam, String achternaam, String telefoonnummer) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_EMALADRES, emailadres);
+        values.put(COL_WACHTWOORD, wachtwoord);
+        values.put(COL_VOORNAAM, voornaam);
+        values.put(COL_ACHTERNAAM, achternaam);
+        values.put(COL_TELEFOONNUMMER, telefoonnummer);
+        long result = db.update(TABLE_KLANTLOGINS, values, "mldrs = ?", new String[]{LoginActivity.strEmailadres});
         db.close();
         if(result == -1) {
             return false;
@@ -120,7 +138,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Boolean addGeconfigureerdeLightyear(GeconfigureerdeLightyear cl) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COL_EMAILADRES_KLANTLOGIN, strEmailadres);
+        values.put(COL_EMAILADRES_KLANTLOGIN, LoginActivity.strEmailadres);
         values.put(COL_MODEL, cl.getMdl().toString());
         values.put(COL_KLEUR, cl.getKlr().toString());
         values.put(COL_LAK, cl.getLk().toString());
@@ -142,7 +160,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Boolean updateGeconfigureerdeLightyear(GeconfigureerdeLightyear cl, String cnfgrtnmmr, String mdl) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COL_EMAILADRES_KLANTLOGIN, strEmailadres);
+        values.put(COL_EMAILADRES_KLANTLOGIN, LoginActivity.strEmailadres);
         values.put(COL_MODEL, mdl);
         values.put(COL_KLEUR, cl.getKlr().toString());
         values.put(COL_LAK, cl.getLk().toString());
@@ -159,7 +177,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Methode die kijkt of de gebruikersnaam van de klant al bestaat
     public Boolean checkEmailadres(String emailadres) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM KlantLogins WHERE mldrs = ?", new String[]{emailadres});
+        Cursor cursor = db.rawQuery("SELECT mldrs FROM KlantLogins WHERE mldrs = ?", new String[]{emailadres});
+        if(cursor.getCount() > 0) {
+            cursor.close();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Methode die kijkt of het wachtwoord juist is
+    public Boolean checkWachtwoord(String wachtwoord) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT wchtwrd FROM KlantLogins WHERE wchtwrd = ?", new String[]{wachtwoord});
         if(cursor.getCount() > 0) {
             cursor.close();
             return true;
@@ -171,7 +201,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Methode die kijkt of de klant bestaat en inlogt als het waar is
     public Boolean checkLogin(String emailadres, String wachtwoord) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM KlantLogins WHERE mldrs = ? AND wchtwrd = ?", new String[]{emailadres, wachtwoord});
+        Cursor cursor = db.rawQuery("SELECT mldrs, wchtwrd FROM KlantLogins WHERE mldrs = ? AND wchtwrd = ?", new String[]{emailadres, wachtwoord});
         if(cursor.getCount() > 0) {
             cursor.close();
             return true;
@@ -180,14 +210,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    //Methode die naam weergeeft bij profiel
-    public String getKlantnaam() {
+    //Methode die voornaam teruggeeft
+    public String getKlantVoornaam() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT nm FROM KlantLogins WHERE mldrs = ?", new String[]{strEmailadres});
+        Cursor cursor = db.rawQuery("SELECT vrnm FROM KlantLogins WHERE mldrs = ?", new String[]{LoginActivity.strEmailadres});
         if(cursor != null && cursor.moveToFirst()) {
-            klantnaam = cursor.getString(cursor.getColumnIndex(COL_NAAM));
+            String klantvoornaam = cursor.getString(cursor.getColumnIndex(COL_VOORNAAM));
             cursor.close();
-            return klantnaam;
+            return klantvoornaam;
+        } else {
+            return null;
+        }
+    }
+
+    //Methode die achternaam teruggeeft
+    public String getKlantAchternaam() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT chtrnm FROM KlantLogins WHERE mldrs = ?", new String[]{LoginActivity.strEmailadres});
+        if(cursor != null && cursor.moveToFirst()) {
+            String klantachternaam = cursor.getString(cursor.getColumnIndex(COL_ACHTERNAAM));
+            cursor.close();
+            return klantachternaam;
+        } else {
+            return null;
+        }
+    }
+
+    //Methode die naam weergeeft bij profiel
+    public String getTelefoonnummer() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT tlfnnmmr FROM KlantLogins WHERE mldrs = ?", new String[]{LoginActivity.strEmailadres});
+        if(cursor != null && cursor.moveToFirst()) {
+            String telefoonnummer = cursor.getString(cursor.getColumnIndex(COL_TELEFOONNUMMER));
+            cursor.close();
+            return telefoonnummer;
         } else {
             return null;
         }
@@ -200,7 +256,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(db == null) {
             return geconfigureerdeLightyearList;
         }
-        Cursor cursor = db.rawQuery("SELECT * FROM GeconfigureerdeLightyears WHERE mldrs = ?", new String[]{strEmailadres});
+        Cursor cursor = db.rawQuery("SELECT * FROM GeconfigureerdeLightyears WHERE mldrs = ?", new String[]{LoginActivity.strEmailadres});
         while(cursor.moveToNext()) {
             Integer configuratienummer = cursor.getInt(cursor.getColumnIndex(COL_CONFIGURATIENUMMER));
             Model model = Model.getModel(cursor.getString(cursor.getColumnIndex(COL_MODEL)));

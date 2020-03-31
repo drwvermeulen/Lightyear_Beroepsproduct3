@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.view.Menu;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -36,12 +35,14 @@ public class ProfileActivity extends AppCompatActivity {
         recyclerView.setAdapter(profileAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ProfileActivity.this));
 
-        //Waarde van de methode getKLantnaam wordt in een string gezet
-        String strKlantnaam = databaseHelper.getKlantnaam();
+        //Waarde van de methode getKlantVoornaam & get KlantAchternaam wordt in een string gezet
+        String strKlantVoornaam = databaseHelper.getKlantVoornaam();
+        String strKlantAchternaam = databaseHelper.getKlantAchternaam();
+
         //TextView wordt geinstancieerd
         TextView tvWelkomKlant = findViewById(R.id.tvWelkomKlant);
         //De waarde van de string wordt getoond op de textview
-        tvWelkomKlant.setText(String.format("Welkom %s",strKlantnaam));
+        tvWelkomKlant.setText(String.format("Welkom %s %s",strKlantVoornaam, strKlantAchternaam));
 
         //Initialiseert en wijst variabele toe
         BottomNavigationView bnvBottomNavigation = findViewById(R.id.bnvBottomNavigation);
@@ -68,5 +69,25 @@ public class ProfileActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.profile_settings, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.profielBewerken) {
+            Intent i = new Intent(getApplicationContext(), ProfielBewerkenActivity.class);
+            startActivity(i);
+        } else if(item.getItemId() == R.id.uitloggen) {
+            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }
